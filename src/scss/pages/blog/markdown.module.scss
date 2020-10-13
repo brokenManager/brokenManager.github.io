@@ -7,11 +7,11 @@
   padding-top: 1rem;
   text-align: left;
 
-  @media #{details.$middle} {
+  @media #{details.get-media-query(middle)} {
     width: 70%;
   }
 
-  @media #{details.$isPhone} {
+  @media #{details.get-media-query(phone)} {
     width: 90%;
   }
 }

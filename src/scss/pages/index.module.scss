@@ -1,3 +1,4 @@
+@use "../color.variable";
 @use "../details.variable";
 @use "../components/triangle.module";
 
@@ -37,16 +38,47 @@
   }
 }
 
-.splash::after {
+.aboutUs {
+  display: block;
+  width: 100%;
+  padding-bottom: 2rem;
+
+  .ans {
+    font-weight: normal;
+
+    @include details.with-font-size(main, -0.1rem);
+
+    .ansAlphabet {
+      margin-right: 0.5rem;
+
+      @include color.main(normal, shadow-color);
+      @include details.with-font-size("sub");
+    }
+  }
+}
+
+.title::after {
   position: absolute;
   left: 50%;
   z-index: -1;
   content: "";
 
   @include details.transform(-4rem, -30deg);
-  @include triangle.triangle();
+  // @include details.triangle();
 
-  @media #{details.$isPhone} {
-    @include triangle.triangle(10vh);
-  }
+  // @media #{details.get-media-query("phone")} {
+  //   @include details.triangle(10vh);
+  // }
+}
+
+.genkaiLink {
+  @include details.hover-link();
+  @include color.text();
+
+  padding: 0 0.1rem;
+  font-style: italic;
+}
+
+.color {
+  @include details.hover-line();
 }

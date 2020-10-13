@@ -1,7 +1,7 @@
 @use "sass:map";
 
 $basis: #fff;
-$warn: #f99f48;
+$red: #cb3535;
 
 @mixin applyColor($color, $target: front) {
   @if $target == front {
@@ -20,6 +20,8 @@ $warn: #f99f48;
     border-left-color: $color;
   } @else if $target == bold-underline {
     background: linear-gradient(transparent 70%, $color 0%);
+  } @else if $target == text-shadow {
+    text-shadow: 0 0 10px #fff, 0 0 20px #{$color}, 0 0 30px #{$color};
   }
 }
 
@@ -27,11 +29,20 @@ $warn: #f99f48;
   @include applyColor(transparent, $target);
 }
 
+@mixin neutral($color, $target) {
+  $basis: (
+    dark: #1a1a1b,
+    light: #fcfcfc,
+  );
+
+  @include applyColor(map.get($basis, $color), $target);
+}
+
 @mixin main($color: normal, $target: front) {
   $main: (
-    dark: #409689,
-    normal: #6ac1b7,
-    light: #bfe9db,
+    dark: #2c5ea5,
+    main: #228dff,
+    light: #7bb2f9,
   );
 
   @include applyColor(map.get($main, $color), $target);
@@ -40,8 +51,9 @@ $warn: #f99f48;
 @mixin sub($color: normal, $target: front) {
   $amount: 15;
   $sub: (
-    normal: #3a517c,
-    light: #b9d0fb,
+    dark: #4b6167,
+    normal: #68939c,
+    light: #a0b6bc,
   );
 
   @include applyColor(map.get($sub, $color), $target);
@@ -49,7 +61,7 @@ $warn: #f99f48;
 
 @mixin text($color: normal, $target: front) {
   $text: (
-    normal: #101e2b,
+    normal: #fcfcfc,
     sub: #a3bacf,
   );
 

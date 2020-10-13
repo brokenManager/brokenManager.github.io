@@ -49,6 +49,10 @@ $large: $screen + "(min-width: 1600px)";
   height: 100%;
 }
 
+@mixin hover-line {
+  @include color.main(normal, bold-underline);
+}
+
 @mixin components-size {
   @media #{$isPc} {
     max-width: 33%;
@@ -75,11 +79,42 @@ $large: $screen + "(min-width: 1600px)";
   @return $thickness solid;
 }
 
+// @mixin triangle($thickness: 15vh, $color: color.get-main-color("light")) {
+
+//   border-top: border($thickness, $color);
+
+//   border-right: border($thickness, transparent);
+
+//   border-bottom: border($thickness, transparent);
+
+//   border-left: border($thickness, $color);
+
+// }
+
 .name {
   @include with-font-size(big);
 
   @media #{$isPhone} {
     @include with-font-size(big, -0.1rem);
+  }
+}
+
+@mixin hover-link {
+  position: relative;
+  cursor: pointer;
+  transition: all 300ms 0s ease;
+
+  @include color.neutral(dark, back);
+
+  &::before {
+    // @include square(100%);
+    @include hover-line();
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    content: "";
   }
 }
 
