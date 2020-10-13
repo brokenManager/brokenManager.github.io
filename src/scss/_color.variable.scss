@@ -29,9 +29,9 @@ $warn: #f99f48;
 
 @mixin main($color: normal, $target: front) {
   $main: (
-    dark: #409689,
-    normal: #6ac1b7,
-    light: #bfe9db,
+    dark: #345f31,
+    normal: #00ff63,
+    light: #68ffa2,
   );
 
   @include applyColor(map.get($main, $color), $target);
@@ -40,9 +40,9 @@ $warn: #f99f48;
 @mixin sub($color: normal, $target: front) {
   $amount: 15;
   $sub: (
-    dark: darken(#517d99, $amount),
-    normal: #517d99,
-    light: #dfefed,
+    dark: #3a517c,
+    normal: #89b0f8,
+    light: #b9d0fb,
   );
 
   @include applyColor(map.get($sub, $color), $target);
@@ -50,7 +50,7 @@ $warn: #f99f48;
 
 @mixin text($color: normal, $target: front) {
   $text: (
-    normal: #202e3b,
+    normal: #101e2b,
     sub: #a3bacf,
   );
 

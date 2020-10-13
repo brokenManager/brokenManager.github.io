@@ -88,7 +88,21 @@ $large: $screen + "(min-width: 1600px)";
   padding: 2%;
   margin: 0 auto;
 
-  @media #{$isPhone} {
+  &:hover {
+    @include color.clear(back);
+  }
+}
+
+// @mixin shadow {
+
+// }
+
+.title {
+  padding: 1vh 0;
+
+  @include with-font-size(title);
+
+  @media #{get-media-query(phone)} {
     padding: 2% 2% + $min-padding;
   }
 
