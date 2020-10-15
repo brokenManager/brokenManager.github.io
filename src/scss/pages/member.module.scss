@@ -21,20 +21,11 @@
   }
 }
 
-.avatarWrapper,
-.avatar {
-  height: 100%;
+.icon {
+  @include color.neutral(light, fore);
 
-  @include color.clear(back);
-}
-
-.avatar {
-  align-self: flex-start;
-  width: 37%;
-  object-fit: contain;
-  padding-right: 5%;
-
-  @media #{details.$isPhone} {
-    width: 30%;
+  &:hover {
+    @include details.hover-neon(6);
+    @include color.neon-icon();
   }
 }

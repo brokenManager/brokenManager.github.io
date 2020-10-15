@@ -67,19 +67,17 @@ $transition: all 0.3s 0s ease;
 }
 
 @mixin neon-text($shadow-size: 6) {
-  @include color.main(normal, text-shadow);
+  @include color.text-shadow(normal, text-shadow, $shadow-size);
 
   opacity: 1;
 }
 
-@mixin hover-neon($shadow-size: 6, $isLink: false) {
+@mixin hover-neon($shadow-size: 6) {
   transition: #{$transition};
 
-  @if $isLink {
-    &:hover {
-      @include flashing();
-      @include neon-text($shadow-size);
-    }
+  &:hover {
+    @include flashing();
+    @include neon-text($shadow-size);
   }
 }
 
@@ -88,11 +86,11 @@ $transition: all 0.3s 0s ease;
 
   &::after {
     position: absolute;
-    bottom: 4%;
+    bottom: 0;
     left: 0;
     z-index: -1;
     width: 100%;
-    height: 0.03em;
+    height: 0.1rem;
     content: "";
 
     @include color.main(normal, marker);
@@ -155,17 +153,7 @@ $transition: all 0.3s 0s ease;
   transition: all 300ms 0s ease;
 
   @include color.neutral(dark, back);
-
-  &::before {
-    @include square(100%);
-    // @include hover-line();
-
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    z-index: -1;
-    content: "";
-  }
+  @include hover-neon($shadow-size);
 }
 
 .text {
@@ -178,7 +166,7 @@ $transition: all 0.3s 0s ease;
   }
 
   @include color.neutral(dark, back);
-  @include hover-neon(6, true);
+  @include hover-neon(6);
 }
 
 // @mixin shadow {
@@ -186,9 +174,12 @@ $transition: all 0.3s 0s ease;
 // }
 
 .title {
+  display: inline-block;
   padding: 1vh 0;
+  margin: 1vh auto;
 
   @include with-font-size(title);
+  @include marker();
 
   @media #{get-media-query(phone)} {
     padding: 2% 2% + $min-padding;

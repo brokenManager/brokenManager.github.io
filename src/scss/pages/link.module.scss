@@ -14,5 +14,5 @@
 }
 
 .color {
-  @include details.hover-neon(6, true);
+  @include details.hover-neon(6);
 }

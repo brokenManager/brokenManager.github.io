@@ -2,10 +2,13 @@
 
 $basis: #fff;
 $red: #cb3535;
+$_main: (
+  dark: #2c5ea5,
+  main: #228dff,
+  light: #7bb2f9,
+);
 
 @mixin applyColor($color, $target: front) {
-  $light: #fff;
-
   @if $target == front {
     color: $color;
   } @else if $target == back {
@@ -22,18 +25,6 @@ $red: #cb3535;
     border-left-color: $color;
   } @else if $target == bold-underline {
     background: linear-gradient(transparent 70%, $color 0%);
-  } @else if $target == text-shadow {
-    text-shadow: 0 0 10px #{$light}, 0 0 20px #{$color}, 0 0 30px #{$color};
-  } @else if $target == marker {
-    background-color: $light;
-    box-shadow:
-      0 0 6px $light,
-      0 0 10px $color,
-      0 0 20px $color,
-      0 0 30px $color,
-      0 0 40px $color,
-      0 0 50px $color,
-      0 0 60px $color;
   }
 }
 
@@ -51,13 +42,7 @@ $red: #cb3535;
 }
 
 @mixin main($color: normal, $target: front) {
-  $main: (
-    dark: #2c5ea5,
-    main: #228dff,
-    light: #7bb2f9,
-  );
-
-  @include applyColor(map.get($main, $color), $target);
+  @include applyColor(map.get($_main, $color), $target);
 }
 
 @mixin sub($color: normal, $target: front) {
@@ -78,4 +63,28 @@ $red: #cb3535;
   );
 
   @include applyColor(map.get($text, $color), $target);
+}
+
+@mixin text-shadow($color: normal, $target, $shadow-size) {
+  $_color: map.get($_main, $color);
+
+  @if $target == text {
+    text-shadow: 0 0 10px #{$basis}, 0 0 20px #{$_color}, 0 0 30px #{$_color};
+  } @else if $target == marker {
+    background-color: $basis;
+    box-shadow:
+      0 0 $shadow-size + 0 $basis,
+      0 0 $shadow-size + 4px $_color,
+      0 0 $shadow-size + 14px $_color,
+      0 0 $shadow-size + 24px $_color,
+      0 0 $shadow-size + 34px $_color,
+      0 0 $shadow-size + 44px $_color,
+      0 0 $shadow-size + 54px $_color;
+  }
+}
+
+@mixin neon-icon {
+  $main: map.get($_main, normal);
+
+  filter: drop-shadow(0 0 5px $basis) drop-shadow(0 0 12px $main);
 }
