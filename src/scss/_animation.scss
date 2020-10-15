@@ -1,0 +1,9 @@
+@keyframes intermittente {
+  75% {
+    opacity: 0.7;
+  }
+}
+
+@mixin flashing {
+  animation: intermittente 0.01s infinite alternate;
+}
