@@ -85,6 +85,8 @@ $transition: all 0.3s 0s ease;
   position: relative;
 
   &::after {
+    @include color.aurora-anim();
+
     position: absolute;
     bottom: 0;
     left: 0;
@@ -94,6 +96,7 @@ $transition: all 0.3s 0s ease;
     content: "";
 
     @include color.main(normal, marker);
+    @include color.neutral(light, back);
   }
 }
 
@@ -168,10 +171,6 @@ $transition: all 0.3s 0s ease;
   @include color.neutral(dark, back);
   @include hover-neon(6);
 }
-
-// @mixin shadow {
-
-// }
 
 .title {
   display: inline-block;

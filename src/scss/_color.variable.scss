@@ -88,3 +88,36 @@ $_main: (
 
   filter: drop-shadow(0 0 5px $basis) drop-shadow(0 0 12px $main);
 }
+
+@keyframes aurora {
+  $main: map.get($_main, normal);
+  $light: $basis;
+
+  from {
+    box-shadow:
+      0 0 8px $light,
+      0 0 14px $light,
+      0 0 25px $main,
+      0 0 35px $main,
+      0 0 45px $main,
+      0 0 55px $main,
+      0 0 65px $main,
+      0 0 75px $main,
+      0 0 85px $main;
+  }
+
+  to {
+    box-shadow:
+      0 0 2px $light,
+      0 0 6px $main,
+      0 0 14px $main,
+      0 0 20px $main,
+      0 0 28px $main,
+      0 0 35px $main,
+      0 0 42px $main;
+  }
+}
+
+@mixin aurora-anim {
+  animation: aurora 1.5s ease-in-out infinite alternate;
+}
