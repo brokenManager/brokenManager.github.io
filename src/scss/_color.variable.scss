@@ -4,6 +4,8 @@ $basis: #fff;
 $red: #cb3535;
 
 @mixin applyColor($color, $target: front) {
+  $light: #fff;
+
   @if $target == front {
     color: $color;
   } @else if $target == back {
@@ -21,7 +23,17 @@ $red: #cb3535;
   } @else if $target == bold-underline {
     background: linear-gradient(transparent 70%, $color 0%);
   } @else if $target == text-shadow {
-    text-shadow: 0 0 10px #fff, 0 0 20px #{$color}, 0 0 30px #{$color};
+    text-shadow: 0 0 10px #{$light}, 0 0 20px #{$color}, 0 0 30px #{$color};
+  } @else if $target == marker {
+    background-color: $light;
+    box-shadow:
+      0 0 6px $light,
+      0 0 10px $color,
+      0 0 20px $color,
+      0 0 30px $color,
+      0 0 40px $color,
+      0 0 50px $color,
+      0 0 60px $color;
   }
 }
 
@@ -31,7 +43,7 @@ $red: #cb3535;
 
 @mixin neutral($color, $target) {
   $basis: (
-    dark: #1a1a1b,
+    dark: #222,
     light: #fcfcfc,
   );
 

@@ -7,9 +7,9 @@
 
   padding: 1rem 0;
   margin-bottom: 1%;
-  border-bottom: details.border(2px);
+  // border-bottom: details.border(2px);
 
-  @include color.main(normal, border);
+  // @include color.main(normal, border);
 }
 
 .buttonWrapper {

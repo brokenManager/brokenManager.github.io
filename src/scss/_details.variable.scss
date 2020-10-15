@@ -4,12 +4,19 @@
 $transition: 0.4s;
 $padding: 10%;
 $min-padding: 5%;
-$screen: "screen and ";
-$isPhone: $screen + "(max-width: 600px)";
-$isPc: $screen + "(min-width: 600px)";
-$min: $screen + "(max-width: 360px)";
-$middle: $screen + "(max-width: 1030px)";
-$large: $screen + "(min-width: 1600px)";
+$transition: all 0.3s 0s ease;
+
+@function get-media-query($size) {
+  $media-size: (
+    phone: "(max-width: 600px)",
+    pc: "(min-width: 600px)",
+    min: "(max-width: 360px)",
+    middle: "(max-width: 1030px)",
+    large: "(min-width: 1600px)",
+  );
+
+  @return "screen and " + map.get($media-size, $size);
+}
 
 @mixin flex-style($warp: wrap, $justify: center) {
   display: flex;
@@ -49,8 +56,47 @@ $large: $screen + "(min-width: 1600px)";
   height: 100%;
 }
 
-@mixin hover-line {
-  @include color.main(normal, bold-underline);
+@keyframes intermittente {
+  75% {
+    opacity: 0.7;
+  }
+}
+
+@mixin flashing {
+  animation: intermittente 0.01s infinite alternate;
+}
+
+@mixin neon-text($shadow-size: 6) {
+  @include color.main(normal, text-shadow);
+
+  opacity: 1;
+}
+
+@mixin hover-neon($shadow-size: 6, $isLink: false) {
+  transition: #{$transition};
+
+  @if $isLink {
+    &:hover {
+      @include flashing();
+      @include neon-text($shadow-size);
+    }
+  }
+}
+
+@mixin marker {
+  position: relative;
+
+  &::after {
+    position: absolute;
+    bottom: 4%;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 0.03em;
+    content: "";
+
+    @include color.main(normal, marker);
+  }
 }
 
 @mixin components-size {
@@ -94,21 +140,25 @@ $large: $screen + "(min-width: 1600px)";
 .name {
   @include with-font-size(big);
 
-  @media #{$isPhone} {
+  @media #{get-media-query(phone)} {
     @include with-font-size(big, -0.1rem);
   }
 }
 
-@mixin hover-link {
-  position: relative;
+@mixin square($size) {
+  width: 100%;
+  height: 100%;
+}
+
+@mixin hover-link($shadow-size: 6) {
   cursor: pointer;
   transition: all 300ms 0s ease;
 
   @include color.neutral(dark, back);
 
   &::before {
-    // @include square(100%);
-    @include hover-line();
+    @include square(100%);
+    // @include hover-line();
 
     position: absolute;
     bottom: 0;
@@ -126,6 +176,9 @@ $large: $screen + "(min-width: 1600px)";
   &:hover {
     @include color.clear(back);
   }
+
+  @include color.neutral(dark, back);
+  @include hover-neon(6, true);
 }
 
 // @mixin shadow {

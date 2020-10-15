@@ -1,0 +1,18 @@
+@use "../color.variable";
+@use "../details.variable";
+
+.linkText {
+  @extend .text;
+
+  max-width: 32.5rem;
+  padding: 2% 0;
+  margin: 0 auto;
+
+  @media #{details.get-media-query("phone")} {
+    padding: 2% 2% + details.$min-padding;
+  }
+}
+
+.color {
+  @include details.hover-neon(6, true);
+}

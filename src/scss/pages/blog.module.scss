@@ -14,8 +14,16 @@
 }
 
 .pageLink {
-  @include color.main();
   @include details.with-font-size(little);
+
+  font-style: italic;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: none;
+
+    @include details.hover-neon(6, true);
+  }
 }
 
 .blogTitle {

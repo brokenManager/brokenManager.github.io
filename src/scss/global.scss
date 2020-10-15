@@ -33,6 +33,8 @@ html {
 }
 
 a {
+  @include color.text();
+
   text-decoration: none;
 }
 

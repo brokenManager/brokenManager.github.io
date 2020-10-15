@@ -4,8 +4,16 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap&text=A.Q");
 
-.splash {
+.homeMainContents {
   position: relative;
+  flex-direction: column;
+  padding: 0 details.$min-padding;
+}
+
+.title {
+  @include details.with-font-size(normal, 4rem);
+  @include details.marker();
+
   padding-top: details.$padding;
   padding-bottom: 0.5rem;
   text-align: center;
@@ -49,36 +57,21 @@
     @include details.with-font-size(main, -0.1rem);
 
     .ansAlphabet {
-      margin-right: 0.5rem;
-
-      @include color.main(normal, shadow-color);
+      @include details.neon-text(6);
       @include details.with-font-size("sub");
+
+      margin-right: 0.5rem;
     }
   }
 }
 
-.title::after {
-  position: absolute;
-  left: 50%;
-  z-index: -1;
-  content: "";
-
-  @include details.transform(-4rem, -30deg);
-  // @include details.triangle();
-
-  // @media #{details.get-media-query("phone")} {
-  //   @include details.triangle(10vh);
-  // }
-}
-
 .genkaiLink {
-  @include details.hover-link();
-  @include color.text();
+  @include details.hover-link(3);
 
   padding: 0 0.1rem;
   font-style: italic;
 }
 
 .color {
-  @include details.hover-line();
+  display: inline-block;
 }
