@@ -39,15 +39,15 @@ $transition: all 0.3s 0s ease;
 }
 
 @mixin make-padding($display-size, $pos: "") {
-  @if $display-size == $large {
+  @if $display-size == large {
     padding#{$pos}: 10%;
   }
 
-  @if $display-size == $isPc {
+  @if $display-size == pc {
     padding#{$pos}: 5%;
   }
 
-  @if $display-size == $isPhone {
+  @if $display-size == phone {
     padding#{$pos}: 3%;
   }
 }
@@ -92,19 +92,19 @@ $transition: all 0.3s 0s ease;
 }
 
 @mixin components-size {
-  @media #{$isPc} {
+  @media #{get-media-query(pc)} {
     max-width: 33%;
   }
 
-  @media #{$large} {
+  @media #{get-media-query(large)} {
     max-width: 25%;
   }
 
-  @media #{$middle} {
+  @media #{get-media-query(middle)} {
     max-width: 50%;
   }
 
-  @media #{$isPhone} {
+  @media #{get-media-query(phone)} {
     max-width: 100%;
   }
 }

@@ -20,11 +20,11 @@
 
   @include details.with-font-size(title, 1rem);
 
-  @media #{details.$middle} {
+  @media #{details.get-media-query(middle)} {
     @include details.with-font-size(title, -0.3rem);
   }
 
-  @media #{details.$min} {
+  @media #{details.get-media-query(min)} {
     @include details.with-font-size(title, -0.5rem);
   }
 }
@@ -35,13 +35,13 @@
 
   @include details.with-font-size(big);
 
-  @media #{details.$middle} {
+  @media #{details.get-media-query(middle)} {
     padding-bottom: details.$padding;
 
     @include details.with-font-size(big, -0.3rem);
   }
 
-  @media #{details.$min} {
+  @media #{details.get-media-query(min)} {
     @include details.with-font-size(big, -0.5rem);
   }
 }

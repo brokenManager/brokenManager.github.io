@@ -9,7 +9,7 @@
   object-fit: contain;
   padding-right: 5%;
 
-  @media #{details.$isPhone} {
+  @media #{details.get-media-query(phone)} {
     width: 30%;
   }
 }

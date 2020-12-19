@@ -16,7 +16,7 @@
 .linksContainer > * + * {
   margin-left: 1.1rem;
 
-  @media #{details.$isPhone} {
+  @media #{details.get-media-query(phone)} {
     margin-left: 1.2rem;
   }
 }

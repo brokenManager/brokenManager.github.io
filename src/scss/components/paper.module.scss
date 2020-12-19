@@ -5,7 +5,7 @@
   @include wrapper.wrapper();
   @include details.components-size();
 
-  @media #{details.$isPhone} {
+  @media #{details.get-media-query(phone)} {
     justify-content: flex-start;
   }
 }
@@ -13,15 +13,15 @@
 .paper {
   @include details.fully-spread();
   @include details.flex-style(nowrap, flex-start);
-  @include details.make-padding(details.$isPc);
+  @include details.make-padding(details.get-media-query(pc));
 
-  @media #{details.$large} {
-    @include details.make-padding(details.$large);
+  @media #{details.get-media-query(large)} {
+    @include details.make-padding(large);
   }
 
-  @media #{details.$isPhone} {
+  @media #{details.get-media-query(phone)} {
     text-align: left;
 
-    @include details.make-padding(details.$isPhone);
+    @include details.make-padding(phone);
   }
 }

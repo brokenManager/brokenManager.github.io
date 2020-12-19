@@ -27,7 +27,7 @@
   flex-flow: row wrap;
   justify-content: flex-start;
 
-  @media #{details.$isPhone} {
+  @media #{details.get-media-query(phone)} {
     flex-direction: column;
     justify-content: flex-end;
   }
