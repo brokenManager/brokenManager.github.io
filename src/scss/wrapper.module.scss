@@ -9,10 +9,18 @@
   @include details.flex-style();
 }
 
+.wrapper {
+  @include wrapper();
+}
+
 @mixin page {
   @include wrapper();
 
   min-height: 100vh;
+}
+
+.page {
+  @include page();
 }
 
 @mixin layout {
