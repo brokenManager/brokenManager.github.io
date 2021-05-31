@@ -1,0 +1,44 @@
+<!DOCTYPE html><html lang="ja"><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-178647070-1"></script><script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag("js", new Date());
+                gtag("config", "UA-178647070-1", {
+                  page_path: window.location.pathname,
+                });
+              </script><meta name="viewport" content="width=device-width"/><meta charSet="utf-8"/><link rel="preconnect" href="https://cdn.jsdelivr.net"/><link rel="preconnect" href="https://fonts.googleapis.com"/><title>限界開発鯖 - ブログ - Windows で alias</title><meta name="description" content="Over Limit Development"/><meta name="name" content="限界開発鯖 - ブログ - Windows で alias"/><meta name="image" content="https://approvers.dev/android-chrome-512x512.png"/><meta property="og:title" content="限界開発鯖 - ブログ - Windows で alias"/><meta property="og:description" content="Over Limit Development"/><meta property="og:image" content="https://approvers.dev/android-chrome-512x512.png"/><meta property="og:locale" content="ja_JP"/><meta property="og:site_name" content="限界開発鯖"/><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="限界開発鯖 - ブログ - Windows で alias"/><meta name="twitter:description" content="Over Limit Development"/><meta name="twitter:image" content="https://approvers.dev/android-chrome-512x512.png"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000"/><link rel="manifest" href="/site.webmanifest"/><meta name="msapplication-TileColor" content="#000000"/><meta name="theme-color" content="#000000"/><meta name="next-head-count" content="12"/><link rel="preload" href="/_next/static/css/c026e7d6c25e424eccfa.css" as="style"/><link rel="stylesheet" href="/_next/static/css/c026e7d6c25e424eccfa.css" data-n-g=""/><link rel="preload" href="/_next/static/css/b80c6265847a1ebf519a.css" as="style"/><link rel="stylesheet" href="/_next/static/css/b80c6265847a1ebf519a.css" data-n-p=""/><noscript data-n-css=""></noscript><link rel="preload" href="/_next/static/chunks/main-67bc8a77aa02c41cd675.js" as="script"/><link rel="preload" href="/_next/static/chunks/webpack-50bee04d1dc61f8adf5b.js" as="script"/><link rel="preload" href="/_next/static/chunks/framework.37f4a736348214b3ca94.js" as="script"/><link rel="preload" href="/_next/static/chunks/commons.1c4faeef06f42ab7ddbd.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/_app-6c98ddcdb5b3e1d73d8a.js" as="script"/><link rel="preload" href="/_next/static/chunks/5b95f9ea.a25a389eafc2b37aecd7.js" as="script"/><link rel="preload" href="/_next/static/chunks/801fd52765eea4473fff6b66c6444039c97c82e1.3a90023b2aecaca597b1.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/blog/%5Bid%5D-153bd444b931dea36648.js" as="script"/></head><body><div id="__next"><div class="layout_page__3xd7f"><header class="header_headerLayout__RIUSk"><nav class="header_buttonWrapper__vEdz6"><div class="button_button__1zV8T"><a href="/">ホーム</a></div><div class="button_button__1zV8T"><a href="/member">メンバー</a></div><div class="button_button__1zV8T"><a href="/blog">ブログ</a></div><div class="button_button__1zV8T"><a href="/link">リンク</a></div></nav></header><main class="layout_wrapper__2SE4q"><header class="markdown_title__1PGpJ"><h1>Windows で alias</h1><div>AHOXA/raiga0310<!-- --> - <time class="date_date__2DlFe" dateTime="2021-02-22">February 22, 2021</time><nav class="prev-next-link_nav__Xq226"><a class="prev-next-link_left__3ThxI" href="004">〈 前</a></nav></div></header><article class="markdown_markdown__cqryc"><div><p>AHOXAです。ブログ記事書きたくなったので最近の出来事を書きます。</p>
+<h1>Windows で alias</h1>
+<p>自機がWindowsなのにどうしてか一番慣れ親しんだコマンドはUNIX系なので、WindowsでPSでコマンドを叩くときにも使いたいな、というふうに思い立ちました。</p>
+<h2>とりあえす Just Do It</h2>
+<p>一通り調べてこれを叩けばよいという結論になりました。</p>
+<pre><code class="language-powershell">doskey {macro name}={execute command}
+</code></pre>
+<p>しかしこれは一度閉じるとリセットされてしまう方法です。これを解決するには起動時に実行できるようにしましょう。</p>
+<h2>起動時に読み込むように設定</h2>
+<h3>まずはマクロ用のファイルを作る</h3>
+<p>設定したいエイリアスをまとめたファイルを作成し、それを端末に読み込ませるという方法でエイリアスの登録をします。今は登録したいエイリアスが一つだけかもしれませんが、後々必要なエイリアスが複数になった時のためにこのような方法を取ります。</p>
+<ul>
+<li>登録したエイリアスをファイルに出力する</li>
+</ul>
+<pre><code>doskey /macros &gt; {directory path}/{your macros file}
+</code></pre>
+<ul>
+<li>ファイルを読み込んでエイリアスを設定する</li>
+</ul>
+<pre><code class="language-powershell">doskey /macrofile={directory path}/{your macros file}
+</code></pre>
+<h3>起動時にエイリアス設定のコマンドを走らせる</h3>
+<p>普段使う端末のショートカットからプロパティを開き、リンク先に起動時のオプション <code>/k</code> で起動時に実行するオプションを追加します。</p>
+<p><img src="https://i.imgur.com/b9mDVSB.jpg" alt="cmd.exeのプロパティ"></p>
+<h2>終わり</h2>
+<p>意外と簡単でした。ほかにも <code>Set-Alias</code>  みたいなものもあるのでお好みの方法でよいTerminal on Windows Life を。</p>
+<p>※今回の設定方法はプロパティを変更したショートカットでのみエイリアスが反映されます。もし反映されないと思った場合は設定した端末と開いている端末を確認してみてください。</p>
+<p>以下参考リンクです(5年前の記事だったけど問題はなかった)：</p>
+<ul>
+<li>
+<p><a href="https://qiita.com/little_hand_s/items/91d6bcb680eba10da835">Windowsのコマンドプロンプトでaliasを設定する(cmderの設定含む -- Qiita)</a></p>
+</li>
+<li>
+<p><a href="https://www.javadrive.jp/command/command/index2.html">コマンドに対してマクロ(エイリアス)を設定する(DOSKEY)</a></p>
+</li>
+</ul>
+</div></article><footer class="markdown_title__1PGpJ"><nav class="prev-next-link_nav__Xq226"><a class="prev-next-link_left__3ThxI" href="004">〈 前</a></nav></footer></main><footer class="footer_footerCard__1AeGw"><a class="footer_footerLink__2xIai" href="/policy">プライバシーポリシー</a> <!-- -->- (c) 2020 Approvers</footer></div></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"post":{"content":"\nAHOXAです。ブログ記事書きたくなったので最近の出来事を書きます。\n\n# Windows で alias\n\n自機がWindowsなのにどうしてか一番慣れ親しんだコマンドはUNIX系なので、WindowsでPSでコマンドを叩くときにも使いたいな、というふうに思い立ちました。\n\n## とりあえす Just Do It\n\n一通り調べてこれを叩けばよいという結論になりました。\n\n```powershell\ndoskey {macro name}={execute command}\n```\n\n しかしこれは一度閉じるとリセットされてしまう方法です。これを解決するには起動時に実行できるようにしましょう。\n\n## 起動時に読み込むように設定\n\n### まずはマクロ用のファイルを作る\n\n設定したいエイリアスをまとめたファイルを作成し、それを端末に読み込ませるという方法でエイリアスの登録をします。今は登録したいエイリアスが一つだけかもしれませんが、後々必要なエイリアスが複数になった時のためにこのような方法を取ります。\n\n- 登録したエイリアスをファイルに出力する\n\n```\ndoskey /macros \u003e {directory path}/{your macros file}\n```\n\n- ファイルを読み込んでエイリアスを設定する\n\n```powershell\ndoskey /macrofile={directory path}/{your macros file}\n```\n\n### 起動時にエイリアス設定のコマンドを走らせる\n\n普段使う端末のショートカットからプロパティを開き、リンク先に起動時のオプション `/k` で起動時に実行するオプションを追加します。\n\n![cmd.exeのプロパティ](https://i.imgur.com/b9mDVSB.jpg)\n\n## 終わり\n\n意外と簡単でした。ほかにも `Set-Alias`  みたいなものもあるのでお好みの方法でよいTerminal on Windows Life を。\n\n※今回の設定方法はプロパティを変更したショートカットでのみエイリアスが反映されます。もし反映されないと思った場合は設定した端末と開いている端末を確認してみてください。\n\n以下参考リンクです(5年前の記事だったけど問題はなかった)：\n\n- [Windowsのコマンドプロンプトでaliasを設定する(cmderの設定含む -- Qiita)](https://qiita.com/little_hand_s/items/91d6bcb680eba10da835)\n\n- [コマンドに対してマクロ(エイリアス)を設定する(DOSKEY)](https://www.javadrive.jp/command/command/index2.html)\n","title":"Windows で alias","author":"AHOXA/raiga0310","date":"2021-02-22","id":"005","prevId":"004","nextId":""}},"__N_SSG":true},"page":"/blog/[id]","query":{"id":"005"},"buildId":"C3aexzyxEDS7rfHX-7Jqt","nextExport":false,"isFallback":false,"gsp":true}</script><script nomodule="" src="/_next/static/chunks/polyfills-040103c5c51c5268569e.js"></script><script src="/_next/static/chunks/main-67bc8a77aa02c41cd675.js" async=""></script><script src="/_next/static/chunks/webpack-50bee04d1dc61f8adf5b.js" async=""></script><script src="/_next/static/chunks/framework.37f4a736348214b3ca94.js" async=""></script><script src="/_next/static/chunks/commons.1c4faeef06f42ab7ddbd.js" async=""></script><script src="/_next/static/chunks/pages/_app-6c98ddcdb5b3e1d73d8a.js" async=""></script><script src="/_next/static/chunks/5b95f9ea.a25a389eafc2b37aecd7.js" async=""></script><script src="/_next/static/chunks/801fd52765eea4473fff6b66c6444039c97c82e1.3a90023b2aecaca597b1.js" async=""></script><script src="/_next/static/chunks/pages/blog/%5Bid%5D-153bd444b931dea36648.js" async=""></script><script src="/_next/static/C3aexzyxEDS7rfHX-7Jqt/_buildManifest.js" async=""></script><script src="/_next/static/C3aexzyxEDS7rfHX-7Jqt/_ssgManifest.js" async=""></script></body></html>

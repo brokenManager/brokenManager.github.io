@@ -1,0 +1,255 @@
+<!DOCTYPE html><html lang="ja"><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-178647070-1"></script><script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag("js", new Date());
+                gtag("config", "UA-178647070-1", {
+                  page_path: window.location.pathname,
+                });
+              </script><meta name="viewport" content="width=device-width"/><meta charSet="utf-8"/><link rel="preconnect" href="https://cdn.jsdelivr.net"/><link rel="preconnect" href="https://fonts.googleapis.com"/><title>限界開発鯖 - ブログ - お手軽絵文字コミット</title><meta name="description" content="Over Limit Development"/><meta name="name" content="限界開発鯖 - ブログ - お手軽絵文字コミット"/><meta name="image" content="https://approvers.dev/android-chrome-512x512.png"/><meta property="og:title" content="限界開発鯖 - ブログ - お手軽絵文字コミット"/><meta property="og:description" content="Over Limit Development"/><meta property="og:image" content="https://approvers.dev/android-chrome-512x512.png"/><meta property="og:locale" content="ja_JP"/><meta property="og:site_name" content="限界開発鯖"/><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="限界開発鯖 - ブログ - お手軽絵文字コミット"/><meta name="twitter:description" content="Over Limit Development"/><meta name="twitter:image" content="https://approvers.dev/android-chrome-512x512.png"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000"/><link rel="manifest" href="/site.webmanifest"/><meta name="msapplication-TileColor" content="#000000"/><meta name="theme-color" content="#000000"/><meta name="next-head-count" content="12"/><link rel="preload" href="/_next/static/css/c026e7d6c25e424eccfa.css" as="style"/><link rel="stylesheet" href="/_next/static/css/c026e7d6c25e424eccfa.css" data-n-g=""/><link rel="preload" href="/_next/static/css/b80c6265847a1ebf519a.css" as="style"/><link rel="stylesheet" href="/_next/static/css/b80c6265847a1ebf519a.css" data-n-p=""/><noscript data-n-css=""></noscript><link rel="preload" href="/_next/static/chunks/main-67bc8a77aa02c41cd675.js" as="script"/><link rel="preload" href="/_next/static/chunks/webpack-50bee04d1dc61f8adf5b.js" as="script"/><link rel="preload" href="/_next/static/chunks/framework.37f4a736348214b3ca94.js" as="script"/><link rel="preload" href="/_next/static/chunks/commons.1c4faeef06f42ab7ddbd.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/_app-6c98ddcdb5b3e1d73d8a.js" as="script"/><link rel="preload" href="/_next/static/chunks/5b95f9ea.a25a389eafc2b37aecd7.js" as="script"/><link rel="preload" href="/_next/static/chunks/801fd52765eea4473fff6b66c6444039c97c82e1.3a90023b2aecaca597b1.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/blog/%5Bid%5D-153bd444b931dea36648.js" as="script"/></head><body><div id="__next"><div class="layout_page__3xd7f"><header class="header_headerLayout__RIUSk"><nav class="header_buttonWrapper__vEdz6"><div class="button_button__1zV8T"><a href="/">ホーム</a></div><div class="button_button__1zV8T"><a href="/member">メンバー</a></div><div class="button_button__1zV8T"><a href="/blog">ブログ</a></div><div class="button_button__1zV8T"><a href="/link">リンク</a></div></nav></header><main class="layout_wrapper__2SE4q"><header class="markdown_title__1PGpJ"><h1>お手軽絵文字コミット</h1><div>loxygen<!-- --> - <time class="date_date__2DlFe" dateTime="2021-01-22">January 22, 2021</time><nav class="prev-next-link_nav__Xq226"><a class="prev-next-link_left__3ThxI" href="003">〈 前</a><a class="prev-next-link_right__2333I" href="005">次 〉</a></nav></div></header><article class="markdown_markdown__cqryc"><div><p>フライさんです。連投して3つ目です。今回はGitのお話です。<br /></p>
+<h1>🙂 絵文字コミット</h1>
+<p>コミットメッセージの書き方には様々な形式のものが存在します。
+今回は、 <strong>絵文字を使用する形式</strong> のコミットメッセージの書き方をご紹介します。<br>
+(便宜上この記事では絵文字を使用する形式でメッセージを書いたコミットを <strong>絵文字コミット</strong> と表現します)</p>
+<p>絵文字コミットでない形式であれば…</p>
+<pre><code>feat: create extremely cool stuff
+</code></pre>
+<p>というような書き方 (Conventional Commits) が主流です。他にも</p>
+<pre><code>fix(README.md): fix typo in the example
+</code></pre>
+<p>とかやったりします。</p>
+<p>では、絵文字コミットがどうかというと…</p>
+<pre><code>✨ create extremely cool stuff
+</code></pre>
+<pre><code>📝(README.md) fix typo in the example
+</code></pre>
+<p><strong>やだ、かんわいい</strong>。あと<strong>わかりやすい</strong>。</p>
+<p>他の形式で <code>feat</code> や <code>fix</code> など、いわゆる <strong>&quot;接頭辞&quot;に英単語を用いる</strong>のに対して、絵文字コミットでは ✨ や ✏、🐛などの <strong>絵文字を使用します</strong>。かわいすぎ。</p>
+<h2>🤔 めんどくさそう？</h2>
+<p><strong>そんなことないです</strong>。もちろん、自分で絵文字ピッカーから絵文字を選択してやる場合はメリットよりも手間のほうが大きくなってしまいますが、 <strong>絵文字コミットに大変便利なツールが作成されています</strong>。後々ご紹介します。</p>
+<p>とにかく伝えたいのは、 <strong>簡単に絵文字コミットできるツールがあるので全くめんどくさくない</strong>ということです。</p>
+<h2>👍 いい</h2>
+<p><strong>絵文字コミットいいんですよ</strong>。具体的に何がいいかというと…</p>
+<h3>💞 かわいい</h3>
+<p>かわいい。</p>
+<h3>👀 わかりやすい</h3>
+<p>絵文字コミットにはルールが存在していて、それに沿ったコミットをすることで、<strong>ひと目で変更の概略をつかめるようになります</strong>。</p>
+<p>どのようなコミットにどの絵文字を使うかは人それぞれなので、いくつかガイドが作られていますが、今回はその一つである <strong>Gitmoji</strong> を例に挙げます。</p>
+<p>Gitmojiで使用されているルールの一例をご紹介します:</p>
+<table>
+<thead>
+<tr>
+<th>やったこと</th>
+<th>英単語で書くPrefix</th>
+<th>絵文字コミット</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>機能追加</td>
+<td><code>feat</code></td>
+<td>✨</td>
+</tr>
+<tr>
+<td>ファイル/コード削除</td>
+<td><code>remove</code></td>
+<td>🔥</td>
+</tr>
+<tr>
+<td>ファイル/コード移動</td>
+<td><code>move</code></td>
+<td>🚚</td>
+</tr>
+<tr>
+<td>依存関係追加</td>
+<td><code>dep</code> / <code>add</code></td>
+<td>➕</td>
+</tr>
+<tr>
+<td>外部APIの仕様変更による修正</td>
+<td><code>fix</code></td>
+<td>👽</td>
+</tr>
+<tr>
+<td>勢いに任せてコードを書いた</td>
+<td>???</td>
+<td>🍺</td>
+</tr>
+</tbody>
+</table>
+<p>などなど。<strong>めちゃんこあります</strong>。めちゃんこありますが、<strong>絵文字というビジュアルに訴える文字を採用している</strong>おかげでパット見で何やったかわかりますね。🔥とか絶対なんか燃やしてますし、🚚とか絶対物を動かしています。</p>
+<p>🍺は多分酔った勢いでコードを書いたんだと思います。<strong>限界開発</strong>を感じますね。</p>
+<h3>🌈 映える</h3>
+<p><strong>映えます</strong>。絵文字はカラフルなので。</p>
+<a id="emoji-prefix-with-tool-for-CLI" />
+<h1>✨ ツールを使って絵文字コミットする (CLI向け)</h1>
+<p><strong><a href="#emoji-prefix-with-tool-for-JetBrains">JetBrains製IDEを使用している方はこちらをご覧ください</a>。</strong></p>
+<p>先述したように、一見してみると<strong>マジでめんどくさそう</strong>ですが、大丈夫です。
+<strong>簡単にGitmojiに沿ったルールで絵文字コミットできるツールが提供されています</strong>。「<a href="https://github.com/carloscuesta/gitmoji-cli">gitmoji-cli</a>」です。</p>
+<p>gitmoji-cliを使用すると、<strong>以下の3ステップを踏むだけで絵文字コミットできるようになります</strong>。</p>
+<ol>
+<li>絵文字を選択する。(キーワードから絞り込み可能)</li>
+<li>コミットメッセージのタイトルを入力する。</li>
+<li>コミットメッセージの本文を入力する。(省略可能)</li>
+</ol>
+<p>絵文字選択機能があるのは大きいですね。検索もできるので、<strong>自分で絵文字を探してコミットメッセージに貼り付けるという作業が不要になります</strong>。</p>
+<h2>⏬ インストール</h2>
+<p><code>yarn</code> (か<code>npm</code>) を使用するので、nodeが入ってなかったりする場合は<code>nvm</code>とかを使用して導入しておいてください。</p>
+<pre><code class="language-bash">yarn global add gitmoji-cli
+# npm -g install gitmoji-cli
+</code></pre>
+<p>これでgitmoji-cliが入りました。</p>
+<h2>🏗 初期設定</h2>
+<h3>インストールした後</h3>
+<pre><code class="language-bash">gitmoji -u
+</code></pre>
+<p>使用する前に、このコマンドでインターネットから絵文字コミットのルールを読み込みます。</p>
+<h3>リポジトリごとに</h3>
+<p>これはやんなくても大丈夫ですが、やったほうが楽だと思います。</p>
+<pre><code class="language-bash">$ gitmoji -i
+✔ Gitmoji commit hook created successfully
+</code></pre>
+<p>これをすると、リポジトリにフックが生成され、<strong><code>git commit</code> コマンドを実行すると<code>gitmoji</code>によるコミットメッセージの生成ウィザードが走るようになります。</strong></p>
+<p>フックを使用しない場合は <code>gitmoji -c</code> でコミットできます。</p>
+<h2>✏ 使ってみる</h2>
+<h3>🙂 絵文字を選ぶ</h3>
+<p>上にも示した3ステップで簡単に絵文字コミットできます。</p>
+<pre><code class="language-bash">cd /path/to/some/random/repository
+gitmoji -i
+# 何か変更を加える
+git add .
+git commit
+</code></pre>
+<p>ここまで行くと、通常ではVimかなんかが出てきてコミットメッセージを要求されますが、Gitmojiのフックが有効になっている場合は…</p>
+<pre><code>? Choose a gitmoji: (Use arrow keys or type to search)
+❯ 🎨  - Improve structure / format of the code.
+  ⚡️  - Improve performance.
+  🔥  - Remove code or files.
+  🐛  - Fix a bug.
+  🚑  - Critical hotfix.
+  ✨  - Introduce new features.
+  📝  - Add or update documentation.
+(Move up and down to reveal more choices)
+</code></pre>
+<p>こんな感じの絵文字選択プロンプトが出てきます。<em>briliant</em>。
+この画面で上下キーを使用して絵文字を選択します。</p>
+<p>また、量が多いので…</p>
+<pre><code>? Choose a gitmoji: fix
+❯ ✏️  - Fix typos.
+  🐛  - Fix a bug.
+  🔒  - Fix security issues.
+  💚  - Fix CI Build.
+  🚨  - Fix compiler / linter warnings.
+  🚑  - Critical hotfix.
+  🩹  - Simple fix for a non-critical issue.
+(Move up and down to reveal more choices)
+</code></pre>
+<p>こんな感じでキーワード絞り込みすることもできます。
+大体は、 <strong>キーワード絞り込み</strong> → <strong>絵文字選択</strong> というフローで絵文字を選びます。</p>
+<p>絵文字を選択したあと、Enterキーを押します。</p>
+<pre><code>? Choose a gitmoji: ✨  - Introduce new features.
+? Enter the commit title [0/48]: 
+</code></pre>
+<p>コメントを入力する画面に入るので、コメントを打ちます。</p>
+<pre><code>? Choose a gitmoji: ✨  - Introduce new features.
+? Enter the commit title [24/48]: Added searching function
+? Enter the commit message: (# with '#' will be ignored, and an empty message ab
+orts the commit.)
+</code></pre>
+<p>コミットメッセージの詳細を入力する画面です。
+「空のメッセージが入力されるとコミットを中断するぜ！」という旨のことが書いてありますが、打たなくても大丈夫です。</p>
+<p><img src="https://i.imgur.com/uDh3ro7.png" alt="コミットメッセージ入力後に表示される、メッセージ編集画面"></p>
+<p>Enterを押すといつものコミットメッセージ入力画面に<strong>絵文字コミットされたコミットメッセージ</strong>が入力されている画面になります。
+この画面で保存&amp;終了すると、コミットされます。</p>
+<pre><code>? Choose a gitmoji: ✨  - Introduce new features.
+? Enter the commit title [24/48]: Added searching function
+? Enter the commit message: # with '#' will be ignored, and an empty message abo
+rts the commit.
+[master f1f628d] ✨ Added searching function
+ 1 file changed, 1 insertion(+)
+ create mode 100644 search.cpp.c
+</code></pre>
+<p>いいですね。最高です。</p>
+<h2>💫 その他の便利 stuff</h2>
+<h3>🔧 設定をいじる</h3>
+<pre><code>gitmoji -g
+</code></pre>
+<p>以下の項目が設定できます。</p>
+<ul>
+<li><strong>自動 <code>git add</code></strong></li>
+<li><strong>絵文字のUnicode化</strong></li>
+<li><strong>GPG(PGP)を用いた署名付きコミットの強制</strong></li>
+<li><strong>スコープ追加</strong></li>
+</ul>
+<p>Unicode化を有効にすると、「<code>:hogehoge:</code>」というテキストの形式ではなく「:face_with_hand_over_mouth:」の形式でコミットされるようになります。すなわち絵文字に対応している環境でコミットメッセージがよりエモく表示されるようになります。</p>
+<h3>👀 絵文字を探す</h3>
+<p>Gitmojiのルールに登録されている絵文字を検索することができます。プルリクエストのタイトルにも絵文字コミットしたいときなどに便利です。</p>
+<pre><code>$ gitmoji -s dependency
+➕ - : heavy_plus_sign : - Add a dependency.
+➖ - : heavy_minus_sign : - Remove a dependency.
+⬆️ - : arrow_up : - Upgrade dependencies.
+📌 - : pushpin : - Pin dependencies to specific versions.
+⬇️ - : arrow_down : - Downgrade dependencies.
+🗑 - : wastebasket : - Deprecate code that needs to be cleaned up.
+</code></pre>
+<p>dependencyだけでもいっぱいありますね。すげえ。</p>
+<h3>💾 フックを介さずにコミットする</h3>
+<p>フックを登録しないでコミットすることもできます。</p>
+<pre><code>gitmoji -c
+</code></pre>
+<p>このコマンドを実行すると、上に記したコミットのウィザードが実行できます。ただし、ウィザードが完了したあと <strong>コミットメッセージの編集画面を介さずにコミットされる</strong> ので注意です。<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+<a id="emoji-prefix-with-tool-for-JetBrains" />
+<h1>✨ ツールを使って絵文字コミットする (JetBrainsユーザ向け)</h1>
+<p><strong><a href="#emoji-prefix-with-tool-for-CLI">CLIを使用している方はこちらをご覧ください</a>。</strong></p>
+<p>絵文字をちまちま選んでどうのこうのするのはマジで面倒くさいので、<strong>Gitmojiに登録されている絵文字を一覧から選択してメッセージに挿入できるプラグインが提供されています</strong> 。<a href="https://plugins.jetbrains.com/plugin/12383-gitmoji-plus-commit-button">Gitmoji Plus: Commit Button</a>です。</p>
+<h2>⏬ インストール</h2>
+<p>2つ方法があります:</p>
+<ul>
+<li><strong>インストールしたいIDEを起動した状態で先程貼ったリンクを踏んで「Install to IDE」を押す</strong>
+環境によっては対応してないかもしれません。</li>
+<li><strong>インストールしたいJetBrains製IDEで設定画面に行き、プラグインを検索しインストールする</strong></li>
+</ul>
+<h2>✏ 使ってみる</h2>
+<p>コミットダイアログに行くと、以下のボタンが追加されています。</p>
+<p><img src="https://i.imgur.com/4hxWWCQ.png" alt="コミットメッセージの履歴表示ボタンの左に新しく出現した"></p>
+<p>このボタンを押すと、絵文字一覧に移動します。 <strong>この画面で絵文字を選択することが可能です!</strong></p>
+<p><img src="https://i.imgur.com/RRXyMRN.png" alt="新しく出現したボタンを押すと出てくる絵文字一覧"></p>
+<p>この画面で使用したい絵文字をクリックすると <strong>コミットメッセージの先頭に絵文字が自動で挿入されます</strong> 。
+(すでに挿入されたものがある場合は置き換えられます)</p>
+<h3>🔎 検索する</h3>
+<p>一覧を出した状態でキーワードを入力すると絵文字を検索することが出来ます。</p>
+<p><img src="https://i.imgur.com/W3f0yOT.png" alt="検索機能を使用したときの絵文字一覧"></p>
+<p>以下のキーワードで補完することができます:</p>
+<ul>
+<li><strong><code>fix</code> や <code>feat</code> などの、変更の概要</strong></li>
+<li><strong>絵文字名</strong></li>
+</ul>
+<h2>🔧 設定 ― Unicodeを使用する</h2>
+<p>「<code>:hogehoge:</code> の形式だと絵文字表示されなくてやだ」というときのために、 <strong>テキスト形式ではなく直接Unicodeの絵文字を挿入する</strong> 設定が可能です。</p>
+<p>設定画面に移動し、下の方にある「<code>Other Settings</code>」を展開し、「<code>Gitmoji</code>」をクリックします。</p>
+<p>その中にある「Use unicode emoji instead of text version (:code:)」にチェックを入れると、 <strong>次回のコミットから直接Unicode絵文字が挿入されるようになります</strong> 。</p>
+<p><img src="https://i.imgur.com/DSyrtKM.png" alt="テキスト形式ではなくUnicode絵文字を使用させるためのオプション"></p>
+<p><img src="https://i.imgur.com/JjHpqzs.png" alt="テキスト形式の代わりにUnicode絵文字が使用されている"></p>
+<h1>👋 まとめ</h1>
+<ul>
+<li>絵文字コミットはかわいくて映える</li>
+<li>ツールを使えばめんどくさくない
+<ul>
+<li>CLIではgitmoji-cliがイケてる
+<ul>
+<li><code>gitmoji -i</code> → うんたらかんたら → <code>git commit</code></li>
+</ul>
+</li>
+<li>JetBrains製IDEではGitmoji Plus: Commit Buttonがイケてる</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2>🔖 注釈</h2>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>加えて、<code>git add</code>し忘れたまま<code>gitmoji -c</code>すると、コミットメッセージの確定時に例外を吐いて落ちます。フック張っておくのが確実? <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+</div></article><footer class="markdown_title__1PGpJ"><nav class="prev-next-link_nav__Xq226"><a class="prev-next-link_left__3ThxI" href="003">〈 前</a><a class="prev-next-link_right__2333I" href="005">次 〉</a></nav></footer></main><footer class="footer_footerCard__1AeGw"><a class="footer_footerLink__2xIai" href="/policy">プライバシーポリシー</a> <!-- -->- (c) 2020 Approvers</footer></div></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"post":{"content":"\nフライさんです。連投して3つ目です。今回はGitのお話です。\u003cbr /\u003e\n\n# :slightly_smiling_face: 絵文字コミット\n\nコミットメッセージの書き方には様々な形式のものが存在します。\n今回は、 **絵文字を使用する形式** のコミットメッセージの書き方をご紹介します。\u003cbr\u003e\n(便宜上この記事では絵文字を使用する形式でメッセージを書いたコミットを **絵文字コミット** と表現します)\n\n絵文字コミットでない形式であれば…\n\n```\nfeat: create extremely cool stuff\n```\n\nというような書き方 (Conventional Commits) が主流です。他にも\n\n```\nfix(README.md): fix typo in the example\n```\n\nとかやったりします。\n\nでは、絵文字コミットがどうかというと…\n\n```\n✨ create extremely cool stuff\n```\n```\n📝(README.md) fix typo in the example\n```\n\n**やだ、かんわいい**。あと**わかりやすい**。\n\n他の形式で `feat` や `fix` など、いわゆる **\"接頭辞\"に英単語を用いる**のに対して、絵文字コミットでは :sparkles: や :pencil2:、:bug:などの **絵文字を使用します**。かわいすぎ。\n\n## :thinking: めんどくさそう？\n\n**そんなことないです**。もちろん、自分で絵文字ピッカーから絵文字を選択してやる場合はメリットよりも手間のほうが大きくなってしまいますが、 **絵文字コミットに大変便利なツールが作成されています**。後々ご紹介します。\n\nとにかく伝えたいのは、 **簡単に絵文字コミットできるツールがあるので全くめんどくさくない**ということです。\n\n## :thumbsup: いい\n\n**絵文字コミットいいんですよ**。具体的に何がいいかというと…\n\n### :revolving_hearts: かわいい\n\nかわいい。\n\n### :eyes: わかりやすい\n\n絵文字コミットにはルールが存在していて、それに沿ったコミットをすることで、**ひと目で変更の概略をつかめるようになります**。\n\nどのようなコミットにどの絵文字を使うかは人それぞれなので、いくつかガイドが作られていますが、今回はその一つである **Gitmoji** を例に挙げます。\n\nGitmojiで使用されているルールの一例をご紹介します:\n\n| やったこと                  | 英単語で書くPrefix | 絵文字コミット      |\n| --------------------------- | ------------------ | ----------------- |\n| 機能追加                    | `feat`             | :sparkles:        |\n| ファイル/コード削除         | `remove`           | :fire:            |\n| ファイル/コード移動         | `move`             | :truck:           |\n| 依存関係追加                | `dep` / `add`      | :heavy_plus_sign: |\n| 外部APIの仕様変更による修正 | `fix`              | :alien:           |\n| 勢いに任せてコードを書いた  | ???                | :beer:            |\n\nなどなど。**めちゃんこあります**。めちゃんこありますが、**絵文字というビジュアルに訴える文字を採用している**おかげでパット見で何やったかわかりますね。:fire:とか絶対なんか燃やしてますし、:truck:とか絶対物を動かしています。\n\n:beer:は多分酔った勢いでコードを書いたんだと思います。**限界開発**を感じますね。\n\n### :rainbow: 映える\n\n**映えます**。絵文字はカラフルなので。\n\n\u003ca id=\"emoji-prefix-with-tool-for-CLI\" /\u003e\n\n# :sparkles: ツールを使って絵文字コミットする (CLI向け)\n**[JetBrains製IDEを使用している方はこちらをご覧ください](#emoji-prefix-with-tool-for-JetBrains)。**\n\n先述したように、一見してみると**マジでめんどくさそう**ですが、大丈夫です。\n**簡単にGitmojiに沿ったルールで絵文字コミットできるツールが提供されています**。「[gitmoji-cli](https://github.com/carloscuesta/gitmoji-cli)」です。\n\ngitmoji-cliを使用すると、**以下の3ステップを踏むだけで絵文字コミットできるようになります**。\n\n1. 絵文字を選択する。(キーワードから絞り込み可能)\n2. コミットメッセージのタイトルを入力する。\n3. コミットメッセージの本文を入力する。(省略可能)\n\n絵文字選択機能があるのは大きいですね。検索もできるので、**自分で絵文字を探してコミットメッセージに貼り付けるという作業が不要になります**。\n\n\n## :arrow_double_down: インストール\n\n`yarn` (か`npm`) を使用するので、nodeが入ってなかったりする場合は`nvm`とかを使用して導入しておいてください。\n\n```bash\nyarn global add gitmoji-cli\n# npm -g install gitmoji-cli\n```\n\nこれでgitmoji-cliが入りました。\n\n## :building_construction: 初期設定\n\n### インストールした後\n\n```bash\ngitmoji -u\n```\n\n使用する前に、このコマンドでインターネットから絵文字コミットのルールを読み込みます。\n\n### リポジトリごとに\n\nこれはやんなくても大丈夫ですが、やったほうが楽だと思います。\n\n```bash\n$ gitmoji -i\n✔ Gitmoji commit hook created successfully\n```\n\nこれをすると、リポジトリにフックが生成され、**`git commit` コマンドを実行すると`gitmoji`によるコミットメッセージの生成ウィザードが走るようになります。**\n\nフックを使用しない場合は `gitmoji -c` でコミットできます。\n\n## :pencil2: 使ってみる\n\n### :slightly_smiling_face: 絵文字を選ぶ\n\n上にも示した3ステップで簡単に絵文字コミットできます。\n\n```bash\ncd /path/to/some/random/repository\ngitmoji -i\n# 何か変更を加える\ngit add .\ngit commit\n```\n\nここまで行くと、通常ではVimかなんかが出てきてコミットメッセージを要求されますが、Gitmojiのフックが有効になっている場合は…\n\n```\n? Choose a gitmoji: (Use arrow keys or type to search)\n❯ 🎨  - Improve structure / format of the code.\n  ⚡️  - Improve performance.\n  🔥  - Remove code or files.\n  🐛  - Fix a bug.\n  🚑  - Critical hotfix.\n  ✨  - Introduce new features.\n  📝  - Add or update documentation.\n(Move up and down to reveal more choices)\n```\n\nこんな感じの絵文字選択プロンプトが出てきます。*briliant*。\nこの画面で上下キーを使用して絵文字を選択します。\n\nまた、量が多いので…\n\n```\n? Choose a gitmoji: fix\n❯ ✏️  - Fix typos.\n  🐛  - Fix a bug.\n  🔒  - Fix security issues.\n  💚  - Fix CI Build.\n  🚨  - Fix compiler / linter warnings.\n  🚑  - Critical hotfix.\n  🩹  - Simple fix for a non-critical issue.\n(Move up and down to reveal more choices)\n```\n\nこんな感じでキーワード絞り込みすることもできます。\n大体は、 **キーワード絞り込み** → **絵文字選択** というフローで絵文字を選びます。\n\n絵文字を選択したあと、Enterキーを押します。\n```\n? Choose a gitmoji: ✨  - Introduce new features.\n? Enter the commit title [0/48]: \n```\n\nコメントを入力する画面に入るので、コメントを打ちます。\n\n```\n? Choose a gitmoji: ✨  - Introduce new features.\n? Enter the commit title [24/48]: Added searching function\n? Enter the commit message: (# with '#' will be ignored, and an empty message ab\norts the commit.)\n```\n\nコミットメッセージの詳細を入力する画面です。\n「空のメッセージが入力されるとコミットを中断するぜ！」という旨のことが書いてありますが、打たなくても大丈夫です。\n\n![コミットメッセージ入力後に表示される、メッセージ編集画面](https://i.imgur.com/uDh3ro7.png)\n\nEnterを押すといつものコミットメッセージ入力画面に**絵文字コミットされたコミットメッセージ**が入力されている画面になります。\nこの画面で保存\u0026終了すると、コミットされます。\n\n```\n? Choose a gitmoji: ✨  - Introduce new features.\n? Enter the commit title [24/48]: Added searching function\n? Enter the commit message: # with '#' will be ignored, and an empty message abo\nrts the commit.\n[master f1f628d] ✨ Added searching function\n 1 file changed, 1 insertion(+)\n create mode 100644 search.cpp.c\n```\n\nいいですね。最高です。\n\n## :dizzy: その他の便利 stuff\n### :wrench: 設定をいじる\n\n```\ngitmoji -g\n```\n\n以下の項目が設定できます。\n\n- **自動 `git add`**\n- **絵文字のUnicode化**\n- **GPG(PGP)を用いた署名付きコミットの強制**\n- **スコープ追加**\n\nUnicode化を有効にすると、「`:hogehoge:`」というテキストの形式ではなく「:face_with_hand_over_mouth:」の形式でコミットされるようになります。すなわち絵文字に対応している環境でコミットメッセージがよりエモく表示されるようになります。\n\n### :eyes: 絵文字を探す\nGitmojiのルールに登録されている絵文字を検索することができます。プルリクエストのタイトルにも絵文字コミットしたいときなどに便利です。\n\n```\n$ gitmoji -s dependency\n➕ - : heavy_plus_sign : - Add a dependency.\n➖ - : heavy_minus_sign : - Remove a dependency.\n⬆️ - : arrow_up : - Upgrade dependencies.\n📌 - : pushpin : - Pin dependencies to specific versions.\n⬇️ - : arrow_down : - Downgrade dependencies.\n🗑 - : wastebasket : - Deprecate code that needs to be cleaned up.\n```\n\ndependencyだけでもいっぱいありますね。すげえ。\n\n### :floppy_disk: フックを介さずにコミットする\nフックを登録しないでコミットすることもできます。\n```\ngitmoji -c\n```\nこのコマンドを実行すると、上に記したコミットのウィザードが実行できます。ただし、ウィザードが完了したあと **コミットメッセージの編集画面を介さずにコミットされる** ので注意です。[^1]\n\n\u003ca id=\"emoji-prefix-with-tool-for-JetBrains\" /\u003e\n\n# :sparkles: ツールを使って絵文字コミットする (JetBrainsユーザ向け)\n**[CLIを使用している方はこちらをご覧ください](#emoji-prefix-with-tool-for-CLI)。**\n\n絵文字をちまちま選んでどうのこうのするのはマジで面倒くさいので、**Gitmojiに登録されている絵文字を一覧から選択してメッセージに挿入できるプラグインが提供されています** 。[Gitmoji Plus: Commit Button](https://plugins.jetbrains.com/plugin/12383-gitmoji-plus-commit-button)です。\n\n## :arrow_double_down: インストール\n2つ方法があります:\n\n- **インストールしたいIDEを起動した状態で先程貼ったリンクを踏んで「Install to IDE」を押す**\n  環境によっては対応してないかもしれません。\n- **インストールしたいJetBrains製IDEで設定画面に行き、プラグインを検索しインストールする**\n\n## :pencil2: 使ってみる\n\nコミットダイアログに行くと、以下のボタンが追加されています。\n\n![コミットメッセージの履歴表示ボタンの左に新しく出現した](https://i.imgur.com/4hxWWCQ.png)\n\nこのボタンを押すと、絵文字一覧に移動します。 **この画面で絵文字を選択することが可能です!**\n\n![新しく出現したボタンを押すと出てくる絵文字一覧](https://i.imgur.com/RRXyMRN.png)\n\nこの画面で使用したい絵文字をクリックすると **コミットメッセージの先頭に絵文字が自動で挿入されます** 。\n(すでに挿入されたものがある場合は置き換えられます)\n\n### :mag_right: 検索する\n\n一覧を出した状態でキーワードを入力すると絵文字を検索することが出来ます。\n\n![検索機能を使用したときの絵文字一覧](https://i.imgur.com/W3f0yOT.png)\n\n以下のキーワードで補完することができます:\n\n- **`fix` や `feat` などの、変更の概要**\n- **絵文字名**\n\n## :wrench: 設定 ― Unicodeを使用する\n「`:hogehoge:` の形式だと絵文字表示されなくてやだ」というときのために、 **テキスト形式ではなく直接Unicodeの絵文字を挿入する** 設定が可能です。\n\n設定画面に移動し、下の方にある「`Other Settings`」を展開し、「`Gitmoji`」をクリックします。\n\nその中にある「Use unicode emoji instead of text version (:code:)」にチェックを入れると、 **次回のコミットから直接Unicode絵文字が挿入されるようになります** 。\n\n![テキスト形式ではなくUnicode絵文字を使用させるためのオプション](https://i.imgur.com/DSyrtKM.png)\n\n![テキスト形式の代わりにUnicode絵文字が使用されている](https://i.imgur.com/JjHpqzs.png)\n\n\n# :wave: まとめ\n\n- 絵文字コミットはかわいくて映える\n- ツールを使えばめんどくさくない\n  - CLIではgitmoji-cliがイケてる\n    - `gitmoji -i` → うんたらかんたら → `git commit`\n  - JetBrains製IDEではGitmoji Plus: Commit Buttonがイケてる\n\n---\n\n## :bookmark: 注釈\n\n[^1]: 加えて、`git add`し忘れたまま`gitmoji -c`すると、コミットメッセージの確定時に例外を吐いて落ちます。フック張っておくのが確実?\n\n","title":"お手軽絵文字コミット","author":"loxygen","date":"2021-01-22","id":"004","prevId":"003","nextId":"005"}},"__N_SSG":true},"page":"/blog/[id]","query":{"id":"004"},"buildId":"C3aexzyxEDS7rfHX-7Jqt","nextExport":false,"isFallback":false,"gsp":true}</script><script nomodule="" src="/_next/static/chunks/polyfills-040103c5c51c5268569e.js"></script><script src="/_next/static/chunks/main-67bc8a77aa02c41cd675.js" async=""></script><script src="/_next/static/chunks/webpack-50bee04d1dc61f8adf5b.js" async=""></script><script src="/_next/static/chunks/framework.37f4a736348214b3ca94.js" async=""></script><script src="/_next/static/chunks/commons.1c4faeef06f42ab7ddbd.js" async=""></script><script src="/_next/static/chunks/pages/_app-6c98ddcdb5b3e1d73d8a.js" async=""></script><script src="/_next/static/chunks/5b95f9ea.a25a389eafc2b37aecd7.js" async=""></script><script src="/_next/static/chunks/801fd52765eea4473fff6b66c6444039c97c82e1.3a90023b2aecaca597b1.js" async=""></script><script src="/_next/static/chunks/pages/blog/%5Bid%5D-153bd444b931dea36648.js" async=""></script><script src="/_next/static/C3aexzyxEDS7rfHX-7Jqt/_buildManifest.js" async=""></script><script src="/_next/static/C3aexzyxEDS7rfHX-7Jqt/_ssgManifest.js" async=""></script></body></html>

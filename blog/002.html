@@ -1,0 +1,79 @@
+<!DOCTYPE html><html lang="ja"><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-178647070-1"></script><script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag("js", new Date());
+                gtag("config", "UA-178647070-1", {
+                  page_path: window.location.pathname,
+                });
+              </script><meta name="viewport" content="width=device-width"/><meta charSet="utf-8"/><link rel="preconnect" href="https://cdn.jsdelivr.net"/><link rel="preconnect" href="https://fonts.googleapis.com"/><title>限界開発鯖 - ブログ - Docker版Nginxの環境変数を設定ファイルに展開する機能を使おうとしたら詰まった</title><meta name="description" content="Over Limit Development"/><meta name="name" content="限界開発鯖 - ブログ - Docker版Nginxの環境変数を設定ファイルに展開する機能を使おうとしたら詰まった"/><meta name="image" content="https://approvers.dev/android-chrome-512x512.png"/><meta property="og:title" content="限界開発鯖 - ブログ - Docker版Nginxの環境変数を設定ファイルに展開する機能を使おうとしたら詰まった"/><meta property="og:description" content="Over Limit Development"/><meta property="og:image" content="https://approvers.dev/android-chrome-512x512.png"/><meta property="og:locale" content="ja_JP"/><meta property="og:site_name" content="限界開発鯖"/><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="限界開発鯖 - ブログ - Docker版Nginxの環境変数を設定ファイルに展開する機能を使おうとしたら詰まった"/><meta name="twitter:description" content="Over Limit Development"/><meta name="twitter:image" content="https://approvers.dev/android-chrome-512x512.png"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000"/><link rel="manifest" href="/site.webmanifest"/><meta name="msapplication-TileColor" content="#000000"/><meta name="theme-color" content="#000000"/><meta name="next-head-count" content="12"/><link rel="preload" href="/_next/static/css/c026e7d6c25e424eccfa.css" as="style"/><link rel="stylesheet" href="/_next/static/css/c026e7d6c25e424eccfa.css" data-n-g=""/><link rel="preload" href="/_next/static/css/b80c6265847a1ebf519a.css" as="style"/><link rel="stylesheet" href="/_next/static/css/b80c6265847a1ebf519a.css" data-n-p=""/><noscript data-n-css=""></noscript><link rel="preload" href="/_next/static/chunks/main-67bc8a77aa02c41cd675.js" as="script"/><link rel="preload" href="/_next/static/chunks/webpack-50bee04d1dc61f8adf5b.js" as="script"/><link rel="preload" href="/_next/static/chunks/framework.37f4a736348214b3ca94.js" as="script"/><link rel="preload" href="/_next/static/chunks/commons.1c4faeef06f42ab7ddbd.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/_app-6c98ddcdb5b3e1d73d8a.js" as="script"/><link rel="preload" href="/_next/static/chunks/5b95f9ea.a25a389eafc2b37aecd7.js" as="script"/><link rel="preload" href="/_next/static/chunks/801fd52765eea4473fff6b66c6444039c97c82e1.3a90023b2aecaca597b1.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/blog/%5Bid%5D-153bd444b931dea36648.js" as="script"/></head><body><div id="__next"><div class="layout_page__3xd7f"><header class="header_headerLayout__RIUSk"><nav class="header_buttonWrapper__vEdz6"><div class="button_button__1zV8T"><a href="/">ホーム</a></div><div class="button_button__1zV8T"><a href="/member">メンバー</a></div><div class="button_button__1zV8T"><a href="/blog">ブログ</a></div><div class="button_button__1zV8T"><a href="/link">リンク</a></div></nav></header><main class="layout_wrapper__2SE4q"><header class="markdown_title__1PGpJ"><h1>Docker版Nginxの環境変数を設定ファイルに展開する機能を使おうとしたら詰まった</h1><div>loxygen<!-- --> - <time class="date_date__2DlFe" dateTime="2021-01-06">January 6, 2021</time><nav class="prev-next-link_nav__Xq226"><a class="prev-next-link_left__3ThxI" href="001">〈 前</a><a class="prev-next-link_right__2333I" href="003">次 〉</a></nav></div></header><article class="markdown_markdown__cqryc"><div><p>あけましておめでとうございます、フライさんです。<br />
+ブログ機能があるのに誰も投稿してないので、せっかくならということで書いてみます 📝</p>
+<h1>🚴 TL;DR</h1>
+<ul>
+<li><strong><code>/etc/nginx/templates/</code>に置くファイルの拡張子は<code>.conf.template</code>にしなきゃダメ</strong></li>
+</ul>
+<h1>🗃 Template機能</h1>
+<p>(Template機能は正式な名前ではないですが便宜上こう呼びます)<br />
+もともとのnginxにはない機能ですが、Docker版のnginxには<strong>環境変数の中身を設定ファイルに展開する</strong>というイカした機能があります。</p>
+<pre><code class="language-conf">listen ${NGINX_LISTEN_PORT};
+</code></pre>
+<p>こんな風に書くと環境変数が展開されます。</p>
+<p>こんな感じで書いた設定テンプレートファイルを<code>/etc/nginx/templates/</code>ディレクトリに
+<code>XXX.template</code>という形式のファイル名でコンテナ内に配置すると、
+コンテナが起動したときに、<strong>環境変数が展開された設定ファイルが展開され、<code>/etc/nginx/conf.d</code>に
+<code>XXX</code>という名前で配置されます</strong>。</p>
+<p>(<code>/etc/nginx/templates/web-server.conf.template</code> → <code>/etc/nginx/conf.d/web-server.conf</code> といった具合に)</p>
+<h1>🤦 動かない</h1>
+<p>あるPJでnginxをこねこねしていたときこれを知り、 <em>「こりゃ便利だ、使ってみよう」</em> となったので、
+<strong><code>conf.template</code>を作成し<code>/etc/nginx/templates/</code>にぶん投げ</strong>、コンテナ起動。</p>
+<p>ぼく「さぁ、できてるかな？」<br />
+ぼく「<code>http://localhost:12739/login</code><sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>、<strong>オラァッ！！！！！！！！！！！！！！！！！！！！！</strong>」</p>
+<p>Dockerコンテナ「<strong><code>404 Not found</code></strong>」</p>
+<p>ぼく「<strong>ﾝﾋｨｯ</strong>」</p>
+<h2>🤔 なんでよ</h2>
+<h3>🔍 原因を探る</h3>
+<p>いろいろ原因を洗い出してみて、調査してみましたが…</p>
+<ul>
+<li>
+<p>展開されてない? (テンプレートファイル置く場所ミスとかファイル名ミスとか)<br />
+➡ <strong>コンテナ内の<code>/etc/nginx/conf.d</code>に<code>conf</code> という名前で展開されてた</strong><br />
+➡ 加えて<code>docker</code>のログにも「<code>conf.template</code>を展開したぜ！」というログが出てた</p>
+</li>
+<li>
+<p>設定ファイルがおかしい?<br />
+➡ <code>/etc/nginx/nginx.conf</code>を上書きして環境変数を手動で展開して動かしてみたら<strong>動いた</strong></p>
+</li>
+<li>
+<p>あえて構文ミスさせてみる<br />
+➡ <strong>エラーログは観測できず</strong></p>
+</li>
+</ul>
+<p>ということは、<strong>設定ファイルが読み込まれてない</strong>ということになります。</p>
+<h3>🏄 読み込まれない原因を探る</h3>
+<p>ググったり<code>/etc/nginx/conf.d</code>の中身をつんつんしたりしてもなかなか動かない中、
+<code>/etc/nginx/nginx.conf</code>にある記述を見つけました。</p>
+<pre><code class="language-conf">include  /etc/nginx/conf.d/*.conf;
+</code></pre>
+<p>ファイル名の最後に <strong><code>.conf</code></strong> がつくファイルが読み込まれることが見て取れますね。</p>
+<p>そういえば、展開されたファイルの名前は <strong><code>conf</code></strong> でしたが…<strong>んっ?</strong></p>
+<h3>:cartwheeling: そして問題解決へ</h3>
+<p>コンテナにぶん投げるファイルの名前を<code>conf.template</code>から <strong><code>web.conf.template</code>へリネーム</strong>、
+コンテナへぶん投げました。結果…</p>
+<p>nginx「あーーーー待て、<strong><code>web.conf</code>にセミコロンないやん、ダメ！起動できません！</strong>」</p>
+<p>ぼく「<strong>ｯｯｯｯｯｳｼｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯ!!!!!!!!!!!!!!!!!!!!!!!!!!!</strong>」</p>
+<p><strong>ちゃんと読み込めました</strong>。</p>
+<h1>📖 わかったこと</h1>
+<ul>
+<li><strong><code>/etc/nginx/templates/</code>に置くファイル名の拡張子は<code>.conf.template</code></strong><br />
+<code>.template</code>を消したときに、拡張子が<code>.conf</code>になればOK。<code>app.set.template</code>とかは拡張子が<code>.set</code>になるのでダメです</li>
+<li>設定ファイルに適当な名前をつけるのはやめたほうがいい</li>
+</ul>
+<h1>👋 おわりに</h1>
+<p>初ブログがお粗末になってしまった、またリベンジしたいと思います。</p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><code>12739</code> は適当に決めたポート番号です。キーボードの数字キーの上に指を添え、同時にすべてのキーを押して決めます。 <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+</div></article><footer class="markdown_title__1PGpJ"><nav class="prev-next-link_nav__Xq226"><a class="prev-next-link_left__3ThxI" href="001">〈 前</a><a class="prev-next-link_right__2333I" href="003">次 〉</a></nav></footer></main><footer class="footer_footerCard__1AeGw"><a class="footer_footerLink__2xIai" href="/policy">プライバシーポリシー</a> <!-- -->- (c) 2020 Approvers</footer></div></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"post":{"content":"\nあけましておめでとうございます、フライさんです。\u003cbr /\u003e\nブログ機能があるのに誰も投稿してないので、せっかくならということで書いてみます :pencil:\n\n# :bicyclist: TL;DR\n\n- **`/etc/nginx/templates/`に置くファイルの拡張子は`.conf.template`にしなきゃダメ**\n\n# :card_file_box: Template機能\n(Template機能は正式な名前ではないですが便宜上こう呼びます)\u003cbr /\u003e\nもともとのnginxにはない機能ですが、Docker版のnginxには**環境変数の中身を設定ファイルに展開する**というイカした機能があります。\n\n```conf\nlisten ${NGINX_LISTEN_PORT};\n```\n\nこんな風に書くと環境変数が展開されます。\n\nこんな感じで書いた設定テンプレートファイルを`/etc/nginx/templates/`ディレクトリに\n`XXX.template`という形式のファイル名でコンテナ内に配置すると、\nコンテナが起動したときに、**環境変数が展開された設定ファイルが展開され、`/etc/nginx/conf.d`に\n`XXX`という名前で配置されます**。\n\n(`/etc/nginx/templates/web-server.conf.template` → `/etc/nginx/conf.d/web-server.conf` といった具合に)\n\n# :facepalm: 動かない\nあるPJでnginxをこねこねしていたときこれを知り、 *「こりゃ便利だ、使ってみよう」* となったので、\n**`conf.template`を作成し`/etc/nginx/templates/`にぶん投げ**、コンテナ起動。\n\nぼく「さぁ、できてるかな？」\u003cbr /\u003e\nぼく「`http://localhost:12739/login`[^1]、**オラァッ！！！！！！！！！！！！！！！！！！！！！**」\n\nDockerコンテナ「**`404 Not found`**」\n\nぼく「**ﾝﾋｨｯ**」\n\n## :thinking: なんでよ\n### :mag: 原因を探る\nいろいろ原因を洗い出してみて、調査してみましたが…\n\n- 展開されてない? (テンプレートファイル置く場所ミスとかファイル名ミスとか)\u003cbr /\u003e\n  :arrow_right: **コンテナ内の`/etc/nginx/conf.d`に`conf` という名前で展開されてた**\u003cbr /\u003e\n  :arrow_right: 加えて`docker`のログにも「`conf.template`を展開したぜ！」というログが出てた\n\n- 設定ファイルがおかしい?\u003cbr /\u003e\n  :arrow_right: `/etc/nginx/nginx.conf`を上書きして環境変数を手動で展開して動かしてみたら**動いた**\n  \n- あえて構文ミスさせてみる\u003cbr /\u003e\n  :arrow_right: **エラーログは観測できず**\n\nということは、**設定ファイルが読み込まれてない**ということになります。\n\n### :surfer: 読み込まれない原因を探る\nググったり`/etc/nginx/conf.d`の中身をつんつんしたりしてもなかなか動かない中、\n`/etc/nginx/nginx.conf`にある記述を見つけました。\n\n```conf\ninclude  /etc/nginx/conf.d/*.conf;\n```\n\nファイル名の最後に **`.conf`** がつくファイルが読み込まれることが見て取れますね。\n\nそういえば、展開されたファイルの名前は **`conf`** でしたが…**んっ?**\n\n### :cartwheeling: そして問題解決へ\nコンテナにぶん投げるファイルの名前を`conf.template`から **`web.conf.template`へリネーム**、\nコンテナへぶん投げました。結果…\n\nnginx「あーーーー待て、**`web.conf`にセミコロンないやん、ダメ！起動できません！**」\n\nぼく「**ｯｯｯｯｯｳｼｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯ!!!!!!!!!!!!!!!!!!!!!!!!!!!**」\n\n**ちゃんと読み込めました**。\n\n# :book: わかったこと\n\n- **`/etc/nginx/templates/`に置くファイル名の拡張子は`.conf.template`**\u003cbr /\u003e\n  `.template`を消したときに、拡張子が`.conf`になればOK。`app.set.template`とかは拡張子が`.set`になるのでダメです\n- 設定ファイルに適当な名前をつけるのはやめたほうがいい\n\n# :wave: おわりに\n初ブログがお粗末になってしまった、またリベンジしたいと思います。\n\n\n\n[^1]: `12739` は適当に決めたポート番号です。キーボードの数字キーの上に指を添え、同時にすべてのキーを押して決めます。\n","title":"Docker版Nginxの環境変数を設定ファイルに展開する機能を使おうとしたら詰まった","date":"2021-01-06","author":"loxygen","id":"002","prevId":"001","nextId":"003"}},"__N_SSG":true},"page":"/blog/[id]","query":{"id":"002"},"buildId":"C3aexzyxEDS7rfHX-7Jqt","nextExport":false,"isFallback":false,"gsp":true}</script><script nomodule="" src="/_next/static/chunks/polyfills-040103c5c51c5268569e.js"></script><script src="/_next/static/chunks/main-67bc8a77aa02c41cd675.js" async=""></script><script src="/_next/static/chunks/webpack-50bee04d1dc61f8adf5b.js" async=""></script><script src="/_next/static/chunks/framework.37f4a736348214b3ca94.js" async=""></script><script src="/_next/static/chunks/commons.1c4faeef06f42ab7ddbd.js" async=""></script><script src="/_next/static/chunks/pages/_app-6c98ddcdb5b3e1d73d8a.js" async=""></script><script src="/_next/static/chunks/5b95f9ea.a25a389eafc2b37aecd7.js" async=""></script><script src="/_next/static/chunks/801fd52765eea4473fff6b66c6444039c97c82e1.3a90023b2aecaca597b1.js" async=""></script><script src="/_next/static/chunks/pages/blog/%5Bid%5D-153bd444b931dea36648.js" async=""></script><script src="/_next/static/C3aexzyxEDS7rfHX-7Jqt/_buildManifest.js" async=""></script><script src="/_next/static/C3aexzyxEDS7rfHX-7Jqt/_ssgManifest.js" async=""></script></body></html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html><html lang="ja"><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-178647070-1"></script><script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag("js", new Date());
+                gtag("config", "UA-178647070-1", {
+                  page_path: window.location.pathname,
+                });
+              </script><meta name="viewport" content="width=device-width"/><meta charSet="utf-8"/><link rel="preconnect" href="https://cdn.jsdelivr.net"/><link rel="preconnect" href="https://fonts.googleapis.com"/><title>限界開発鯖 - ブログ - LinuxでDiscordのフォントが微妙におかしい問題を解決するついでにコードブロックのフォントを変える</title><meta name="description" content="Over Limit Development"/><meta name="name" content="限界開発鯖 - ブログ - LinuxでDiscordのフォントが微妙におかしい問題を解決するついでにコードブロックのフォントを変える"/><meta name="image" content="https://approvers.dev/android-chrome-512x512.png"/><meta property="og:title" content="限界開発鯖 - ブログ - LinuxでDiscordのフォントが微妙におかしい問題を解決するついでにコードブロックのフォントを変える"/><meta property="og:description" content="Over Limit Development"/><meta property="og:image" content="https://approvers.dev/android-chrome-512x512.png"/><meta property="og:locale" content="ja_JP"/><meta property="og:site_name" content="限界開発鯖"/><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="限界開発鯖 - ブログ - LinuxでDiscordのフォントが微妙におかしい問題を解決するついでにコードブロックのフォントを変える"/><meta name="twitter:description" content="Over Limit Development"/><meta name="twitter:image" content="https://approvers.dev/android-chrome-512x512.png"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000"/><link rel="manifest" href="/site.webmanifest"/><meta name="msapplication-TileColor" content="#000000"/><meta name="theme-color" content="#000000"/><meta name="next-head-count" content="12"/><link rel="preload" href="/_next/static/css/c026e7d6c25e424eccfa.css" as="style"/><link rel="stylesheet" href="/_next/static/css/c026e7d6c25e424eccfa.css" data-n-g=""/><link rel="preload" href="/_next/static/css/b80c6265847a1ebf519a.css" as="style"/><link rel="stylesheet" href="/_next/static/css/b80c6265847a1ebf519a.css" data-n-p=""/><noscript data-n-css=""></noscript><link rel="preload" href="/_next/static/chunks/main-67bc8a77aa02c41cd675.js" as="script"/><link rel="preload" href="/_next/static/chunks/webpack-50bee04d1dc61f8adf5b.js" as="script"/><link rel="preload" href="/_next/static/chunks/framework.37f4a736348214b3ca94.js" as="script"/><link rel="preload" href="/_next/static/chunks/commons.1c4faeef06f42ab7ddbd.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/_app-6c98ddcdb5b3e1d73d8a.js" as="script"/><link rel="preload" href="/_next/static/chunks/5b95f9ea.a25a389eafc2b37aecd7.js" as="script"/><link rel="preload" href="/_next/static/chunks/801fd52765eea4473fff6b66c6444039c97c82e1.3a90023b2aecaca597b1.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/blog/%5Bid%5D-153bd444b931dea36648.js" as="script"/></head><body><div id="__next"><div class="layout_page__3xd7f"><header class="header_headerLayout__RIUSk"><nav class="header_buttonWrapper__vEdz6"><div class="button_button__1zV8T"><a href="/">ホーム</a></div><div class="button_button__1zV8T"><a href="/member">メンバー</a></div><div class="button_button__1zV8T"><a href="/blog">ブログ</a></div><div class="button_button__1zV8T"><a href="/link">リンク</a></div></nav></header><main class="layout_wrapper__2SE4q"><header class="markdown_title__1PGpJ"><h1>LinuxでDiscordのフォントが微妙におかしい問題を解決するついでにコードブロックのフォントを変える</h1><div>loxygen<!-- --> - <time class="date_date__2DlFe" dateTime="2021-01-11">January 11, 2021</time><nav class="prev-next-link_nav__Xq226"><a class="prev-next-link_left__3ThxI" href="002">〈 前</a><a class="prev-next-link_right__2333I" href="004">次 〉</a></nav></div></header><article class="markdown_markdown__cqryc"><div><p>フライさんです。Arch Linux + i3wmでIntelliJ + IdeaVimでコーディングするのが好きです。</p>
+<h1>💥 問題</h1>
+<p>さて、限界開発鯖の実体は <strong>Discord上のサーバー</strong> なので、僕らは普段Discord上で会話をしています。<br />
+会話をしているんですが、僕が使っているDiscordにはある問題があります。</p>
+<p><img src="https://i.imgur.com/EalfEU1.png" alt="parially-corrupted-discord-font"></p>
+<p><strong>一部の文字列だけが明朝体になっています</strong>。他の普通のテキストはゴシックなのに。</p>
+<p>これをどうにかしたい。</p>
+<h1>🔎 原因を探る</h1>
+<p><strong>Ctrl+Shift+I</strong>で開発者モードを起動して、CSSを見てみることにしました。</p>
+<p><img src="https://i.imgur.com/4SMna5i.png" alt="suspectious-css"></p>
+<p><code>font-family: inherit</code> をたどってみると、ここでフォントを指定してそうなのでここをいじってみます。</p>
+<p>いろいろごにょごにょしていたら、ここに挙げられているフォントが最後まで見つからなかったときの<strong>フォールバックのフォントが明朝体になってることがわかりました</strong>。</p>
+<p><img src="https://i.imgur.com/xxceYIN.png" alt="corrupted-fallback"></p>
+<p>これをシステムフォントの名前にしてやると<strong>そのフォントがちゃんと反映されるらしい</strong>。</p>
+<p><img src="https://i.imgur.com/9IbntWD.png" alt="use-system-font"></p>
+<p>ということは、以下の2つのアプローチを取れば解決しそうです。</p>
+<ul>
+<li><strong>フォールバックのフォントを使いたいフォントに設定する</strong></li>
+<li><strong>👆で指定されているフォントのいずれかをインストールする</strong></li>
+</ul>
+<p>僕は<strong>Noto Sans CJK JPを使いたいので</strong>1つ目のアプローチで攻めることにしました。こちらならPCにインストールされているフォントなら自由に使えますからね。</p>
+<h1>👷 どうにかする</h1>
+<p>(少なくとも僕のArch)Linuxでは、フォントの優先順位は <strong><code>fontconfig</code>で管理されます</strong>。<code>font-config</code>の設定は<code>/etc/fonts/</code> に存在します。</p>
+<pre><code class="language-bash">$ tree -L 1 /etc/fonts
+/etc/fonts
+├── conf.avail
+├── conf.d
+└── fonts.conf
+
+2 directories, 1 file
+</code></pre>
+<p><code>fonts.conf</code> は <code>conf.d</code> の中身を読み込んでくれるので、ここに設定を書いていきます。</p>
+<h2>📝 設定ファイルを作る</h2>
+<p><code>/etc/fonts/conf.d</code>に設定ファイルを作ります。</p>
+<pre><code class="language-bash">cd /etc/fonts/conf.d
+sudo touch 99-user-configuration.conf
+</code></pre>
+<p><code>user-configuration</code>の部分は何でもOKですが、<code>99</code>の部分はこれにしないと設定ファイルが読み込まれる順番が狂って反映されなくなりそうなので<code>99</code>にしておいて損はないと思います。</p>
+<p>その後、何らかの手段で<code>99-user-configuration.conf</code>に以下の内容を書き込んでください。</p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;!DOCTYPE fontconfig SYSTEM &quot;urn:fontconfig:fonts.dtd&quot;&gt;
+&lt;fontconfig&gt;
+  &lt;description&gt;Change default font for Discord&lt;/description&gt;
+  &lt;match&gt;
+    &lt;test name=&quot;prgname&quot;&gt;&lt;string&gt;discord&lt;/string&gt;&lt;/test&gt;
+    &lt;test qual=&quot;any&quot; name=&quot;family&quot;&gt;&lt;string&gt;sans-serif&lt;/string&gt;&lt;/test&gt;
+    &lt;edit mode=&quot;prepend&quot; name=&quot;family&quot;&gt;
+      &lt;string&gt;Noto Sans CJK JP&lt;/string&gt;
+    &lt;/edit&gt;
+  &lt;/match&gt;
+&lt;/fontconfig&gt;
+</code></pre>
+<p>Noto Sans CJK JPはお好みで。ここで設定した部分が明朝体の代わりになります。</p>
+<p>Discordを再起動すると、<strong>明朝体だった部分がNoto Sans CJK JPに置き換わっています</strong>。</p>
+<p><img src="https://i.imgur.com/1Iv9EhI.png" alt="nice-discord"></p>
+<h3>🔬 噛み砕く</h3>
+<p>上の設定ファイルを噛み砕いて日本語訳すると以下のようになります。</p>
+<blockquote>
+<p><em><code>discord</code>という名前のアプリケーションで、<code>sans-serif</code>というフォントファミリーのフォントを使うときは、<strong>Noto Sans CJK JP</strong>を一番最初に考慮してくれよな！</em></p>
+</blockquote>
+<ul>
+<li><code>&lt;test name=&quot;prgname&quot;&gt;&lt;string&gt;discord&lt;/string&gt;&lt;/test&gt;</code> で 対象のアプリケーションがDiscordかどうかを判断しています。<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></li>
+<li><code>&lt;test qual=&quot;any&quot; name=&quot;family&quot;&gt;&lt;string&gt;sans-serif&lt;/string&gt;&lt;/test&gt;</code> で 使おうとしているフォントが<code>sans-serif</code> かを確認します。<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></li>
+<li><code>&lt;edit mode=&quot;prepend&quot; name=&quot;family&quot;&gt;</code>...<code>&lt;/edit&gt;</code> で使いたいフォントを優先順位の一番最初に持ってきます。</li>
+</ul>
+<h1>💫 もっとカスタマイズをする</h1>
+<p>この方法を拡張すれば、<strong>コードブロックのフォントをお好みのフォントにする</strong>とかもできそうです。
+というわけで、コードブロックのフォントをJetBrains Monoにしてみます。</p>
+<p>上で作成したファイルの<code>&lt;/fontconfig&gt;</code> の前に、以下を追記します。</p>
+<pre><code class="language-xml">&lt;match&gt;
+  &lt;test name=&quot;prgname&quot;&gt;&lt;string&gt;discord&lt;/string&gt;&lt;/test&gt;
+  &lt;test qual=&quot;any&quot; name=&quot;family&quot;&gt;&lt;string&gt;Consolas&lt;/string&gt;&lt;/test&gt;
+  &lt;edit mode=&quot;assign&quot; name=&quot;family&quot; binding=&quot;same&quot;&gt;
+    &lt;string&gt;JetBrainsMonoMedium Nerd Font Mono&lt;/string&gt;
+  &lt;/edit&gt;
+&lt;/match&gt;
+</code></pre>
+<p><strong>Consolasを無理やり置き換えています</strong>。あまりクールじゃないですが。</p>
+<p>無理やり置き換えるために<code>&lt;edit&gt;</code>タグの属性をいじっていることに注意してください。<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup></p>
+<pre><code class="language-diff">- &lt;edit mode=&quot;prepend&quot; name=&quot;family&quot;&gt;
++ &lt;edit mode=&quot;assign&quot; name=&quot;family&quot; binding=&quot;same&quot;&gt;
+</code></pre>
+<p>これをすると、コードブロックが以下のようなフォントに変わります。</p>
+<p><img src="https://i.imgur.com/N7EnViU.png" alt="great-codeblock"></p>
+<p>いいですね。読みやすく、そしてなによりも<strong>エモいです</strong>。リガチャもしっかり効いています。<sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup></p>
+<p><img src="https://i.imgur.com/RZciXiw.png" alt="Ligacha"></p>
+<p><strong>すげぇ。</strong> Discordでリガチャ使えるとはさすがに思いませんでした。</p>
+<h1>👋 おわりに</h1>
+<p>Linuxってホントに詳細までカスタマイズできてすごいなーと思いました。</p>
+<h1>📖 参考にした記事</h1>
+<ul>
+<li><a href="https://wiki.archlinux.jp/index.php/%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E8%A8%AD%E5%AE%9A">ArchWiki ― フォント設定</a></li>
+<li><a href="https://wiki.archlinux.jp/index.php/%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E8%A8%AD%E5%AE%9A/%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB">ArchWiki ― フォント設定/サンプル</a></li>
+<li><a href="https://superuser.com/questions/116859/font-substitution-with-fonts-conf">SuperUser ― Font substitution with ~/.fonts.conf</a></li>
+</ul>
+<hr>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>これ見つけたときすごいびっくりしました。まさかこんな都合の良いオプションがあるとは。 <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p>なくても動きますが、コードブロックの等幅フォントも巻き込まれて辛くなります。 <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn3" class="footnote-item"><p>おそらく<code>binding</code>は優先順位に関係してそうです。英語が読めないので間違っているかもしれません (間違っていればぜひ<a href="https://twitter.com/loxygen_k">Twitter</a>とかで教えていただけるとありがたいです🙏) <a href="#fnref3" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn4" class="footnote-item"><p>びっくりしました。 <a href="#fnref4" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+</div></article><footer class="markdown_title__1PGpJ"><nav class="prev-next-link_nav__Xq226"><a class="prev-next-link_left__3ThxI" href="002">〈 前</a><a class="prev-next-link_right__2333I" href="004">次 〉</a></nav></footer></main><footer class="footer_footerCard__1AeGw"><a class="footer_footerLink__2xIai" href="/policy">プライバシーポリシー</a> <!-- -->- (c) 2020 Approvers</footer></div></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"post":{"content":"\nフライさんです。Arch Linux + i3wmでIntelliJ + IdeaVimでコーディングするのが好きです。\n\n# :boom: 問題\n\nさて、限界開発鯖の実体は **Discord上のサーバー** なので、僕らは普段Discord上で会話をしています。\u003cbr /\u003e\n会話をしているんですが、僕が使っているDiscordにはある問題があります。\n\n![parially-corrupted-discord-font](https://i.imgur.com/EalfEU1.png)\n\n**一部の文字列だけが明朝体になっています**。他の普通のテキストはゴシックなのに。\n\nこれをどうにかしたい。\n\n# :mag_right: 原因を探る\n\n**Ctrl+Shift+I**で開発者モードを起動して、CSSを見てみることにしました。\n\n![suspectious-css](https://i.imgur.com/4SMna5i.png)\n\n\n`font-family: inherit` をたどってみると、ここでフォントを指定してそうなのでここをいじってみます。\n\nいろいろごにょごにょしていたら、ここに挙げられているフォントが最後まで見つからなかったときの**フォールバックのフォントが明朝体になってることがわかりました**。\n\n![corrupted-fallback](https://i.imgur.com/xxceYIN.png)\n\nこれをシステムフォントの名前にしてやると**そのフォントがちゃんと反映されるらしい**。\n\n![use-system-font](https://i.imgur.com/9IbntWD.png)\n\nということは、以下の2つのアプローチを取れば解決しそうです。\n\n- **フォールバックのフォントを使いたいフォントに設定する**\n- **:point_up_2:で指定されているフォントのいずれかをインストールする**\n\n僕は**Noto Sans CJK JPを使いたいので**1つ目のアプローチで攻めることにしました。こちらならPCにインストールされているフォントなら自由に使えますからね。\n\n# :construction_worker: どうにかする\n\n(少なくとも僕のArch)Linuxでは、フォントの優先順位は **`fontconfig`で管理されます**。`font-config`の設定は`/etc/fonts/` に存在します。\n\n```bash\n$ tree -L 1 /etc/fonts\n/etc/fonts\n├── conf.avail\n├── conf.d\n└── fonts.conf\n\n2 directories, 1 file\n```\n\n`fonts.conf` は `conf.d` の中身を読み込んでくれるので、ここに設定を書いていきます。\n\n## :pencil: 設定ファイルを作る\n\n`/etc/fonts/conf.d`に設定ファイルを作ります。\n\n```bash\ncd /etc/fonts/conf.d\nsudo touch 99-user-configuration.conf\n```\n\n`user-configuration`の部分は何でもOKですが、`99`の部分はこれにしないと設定ファイルが読み込まれる順番が狂って反映されなくなりそうなので`99`にしておいて損はないと思います。\n\nその後、何らかの手段で`99-user-configuration.conf`に以下の内容を書き込んでください。\n\n```xml\n\u003c?xml version=\"1.0\"?\u003e\n\u003c!DOCTYPE fontconfig SYSTEM \"urn:fontconfig:fonts.dtd\"\u003e\n\u003cfontconfig\u003e\n  \u003cdescription\u003eChange default font for Discord\u003c/description\u003e\n  \u003cmatch\u003e\n    \u003ctest name=\"prgname\"\u003e\u003cstring\u003ediscord\u003c/string\u003e\u003c/test\u003e\n    \u003ctest qual=\"any\" name=\"family\"\u003e\u003cstring\u003esans-serif\u003c/string\u003e\u003c/test\u003e\n    \u003cedit mode=\"prepend\" name=\"family\"\u003e\n      \u003cstring\u003eNoto Sans CJK JP\u003c/string\u003e\n    \u003c/edit\u003e\n  \u003c/match\u003e\n\u003c/fontconfig\u003e\n```\n\nNoto Sans CJK JPはお好みで。ここで設定した部分が明朝体の代わりになります。\n\nDiscordを再起動すると、**明朝体だった部分がNoto Sans CJK JPに置き換わっています**。\n\n![nice-discord](https://i.imgur.com/1Iv9EhI.png)\n\n### :microscope: 噛み砕く\n\n上の設定ファイルを噛み砕いて日本語訳すると以下のようになります。\n\n\u003e *`discord`という名前のアプリケーションで、`sans-serif`というフォントファミリーのフォントを使うときは、**Noto Sans CJK JP**を一番最初に考慮してくれよな！*\n\n- `\u003ctest name=\"prgname\"\u003e\u003cstring\u003ediscord\u003c/string\u003e\u003c/test\u003e` で 対象のアプリケーションがDiscordかどうかを判断しています。[^1]\n- `\u003ctest qual=\"any\" name=\"family\"\u003e\u003cstring\u003esans-serif\u003c/string\u003e\u003c/test\u003e` で 使おうとしているフォントが`sans-serif` かを確認します。[^2]\n- `\u003cedit mode=\"prepend\" name=\"family\"\u003e`...`\u003c/edit\u003e` で使いたいフォントを優先順位の一番最初に持ってきます。\n\n# :dizzy: もっとカスタマイズをする\n\nこの方法を拡張すれば、**コードブロックのフォントをお好みのフォントにする**とかもできそうです。\nというわけで、コードブロックのフォントをJetBrains Monoにしてみます。\n\n上で作成したファイルの`\u003c/fontconfig\u003e` の前に、以下を追記します。\n\n```xml\n\u003cmatch\u003e\n  \u003ctest name=\"prgname\"\u003e\u003cstring\u003ediscord\u003c/string\u003e\u003c/test\u003e\n  \u003ctest qual=\"any\" name=\"family\"\u003e\u003cstring\u003eConsolas\u003c/string\u003e\u003c/test\u003e\n  \u003cedit mode=\"assign\" name=\"family\" binding=\"same\"\u003e\n    \u003cstring\u003eJetBrainsMonoMedium Nerd Font Mono\u003c/string\u003e\n  \u003c/edit\u003e\n\u003c/match\u003e\n```\n\n**Consolasを無理やり置き換えています**。あまりクールじゃないですが。\n\n無理やり置き換えるために`\u003cedit\u003e`タグの属性をいじっていることに注意してください。[^3]\n\n```diff\n- \u003cedit mode=\"prepend\" name=\"family\"\u003e\n+ \u003cedit mode=\"assign\" name=\"family\" binding=\"same\"\u003e\n```\n\nこれをすると、コードブロックが以下のようなフォントに変わります。\n\n![great-codeblock](https://i.imgur.com/N7EnViU.png)\n\nいいですね。読みやすく、そしてなによりも**エモいです**。リガチャもしっかり効いています。[^4]\n\n![Ligacha](https://i.imgur.com/RZciXiw.png)\n\n**すげぇ。** Discordでリガチャ使えるとはさすがに思いませんでした。\n\n# :wave: おわりに\n\nLinuxってホントに詳細までカスタマイズできてすごいなーと思いました。\n\n# :book: 参考にした記事\n\n- [ArchWiki ― フォント設定](https://wiki.archlinux.jp/index.php/%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E8%A8%AD%E5%AE%9A)\n- [ArchWiki ― フォント設定/サンプル](https://wiki.archlinux.jp/index.php/%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E8%A8%AD%E5%AE%9A/%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB)\n- [SuperUser ― Font substitution with ~/.fonts.conf](https://superuser.com/questions/116859/font-substitution-with-fonts-conf)\n\n---\n\n[^1]: これ見つけたときすごいびっくりしました。まさかこんな都合の良いオプションがあるとは。\n\n[^2]: なくても動きますが、コードブロックの等幅フォントも巻き込まれて辛くなります。\n\n[^3]: おそらく`binding`は優先順位に関係してそうです。英語が読めないので間違っているかもしれません (間違っていればぜひ[Twitter](https://twitter.com/loxygen_k)とかで教えていただけるとありがたいです:pray:)\n\n[^4]: びっくりしました。\n","title":"LinuxでDiscordのフォントが微妙におかしい問題を解決するついでにコードブロックのフォントを変える","author":"loxygen","date":"2021-01-11","id":"003","prevId":"002","nextId":"004"}},"__N_SSG":true},"page":"/blog/[id]","query":{"id":"003"},"buildId":"C3aexzyxEDS7rfHX-7Jqt","nextExport":false,"isFallback":false,"gsp":true}</script><script nomodule="" src="/_next/static/chunks/polyfills-040103c5c51c5268569e.js"></script><script src="/_next/static/chunks/main-67bc8a77aa02c41cd675.js" async=""></script><script src="/_next/static/chunks/webpack-50bee04d1dc61f8adf5b.js" async=""></script><script src="/_next/static/chunks/framework.37f4a736348214b3ca94.js" async=""></script><script src="/_next/static/chunks/commons.1c4faeef06f42ab7ddbd.js" async=""></script><script src="/_next/static/chunks/pages/_app-6c98ddcdb5b3e1d73d8a.js" async=""></script><script src="/_next/static/chunks/5b95f9ea.a25a389eafc2b37aecd7.js" async=""></script><script src="/_next/static/chunks/801fd52765eea4473fff6b66c6444039c97c82e1.3a90023b2aecaca597b1.js" async=""></script><script src="/_next/static/chunks/pages/blog/%5Bid%5D-153bd444b931dea36648.js" async=""></script><script src="/_next/static/C3aexzyxEDS7rfHX-7Jqt/_buildManifest.js" async=""></script><script src="/_next/static/C3aexzyxEDS7rfHX-7Jqt/_ssgManifest.js" async=""></script></body></html>
