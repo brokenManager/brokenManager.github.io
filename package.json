@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "export": "next export",
+    "test": "jest",
     "eslint": "eslint --ignore-path .gitignore 'src/**/*.{js,jsx,ts,tsx}'",
     "eslint:fix": "eslint --ignore-path .gitignore 'src/**/*.{js,jsx,ts,tsx}' --fix",
     "stylelint": "stylelint --ignore-path .gitignore 'src/**/*.{css,scss}'",
@@ -37,6 +38,7 @@
   "devDependencies": {
     "@approvers/stylelint-config-scss": "^1.0.0",
     "@testing-library/react": "^12.0.0",
+    "@types/jest": "^26.0.24",
     "@types/markdown-it": "^12.0.1",
     "@types/node": "^15.6.0",
     "@types/react": "^17.0.6",
@@ -47,6 +49,7 @@
     "eslint-plugin-prettier": "^3.1.3",
     "eslint-plugin-react": "^7.21.4",
     "husky": "^6.0.0",
+    "jest": "^27.0.6",
     "lint-staged": "^11.0.0",
     "postcss": "^8.2.10",
     "postcss-flexbugs-fixes": "^5.0.2",
@@ -55,6 +58,7 @@
     "stylelint": "^13.7.2",
     "stylelint-config-recess-order": "^2.1.0",
     "stylelint-scss": "^3.18.0",
+    "ts-jest": "^27.0.4",
     "typescript": "~4.0.2"
   }
 }
